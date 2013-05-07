@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OpenMario.Core.Engine
 {
@@ -24,6 +25,7 @@ namespace OpenMario.Core.Engine
         public float CurrentFPS { get; private set; }
         public Bitmap CurrentFrame { get; private set; }
         public bool IsRunning { get; private set; }
+        public Form MainForm { get;set; }
 
         protected Thread RunningThread { get; private set; }
         #endregion
@@ -84,7 +86,7 @@ namespace OpenMario.Core.Engine
                 OnNewFrame(this, new FrameEventArgs() { Frame = CurrentFrame });
         }
 
-        public void Load()
+        public void Load(Form form, Core.Environment.Environment e)
         {
 
         }

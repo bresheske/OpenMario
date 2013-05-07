@@ -19,7 +19,7 @@ namespace OpenMario
         {
             InitializeComponent();
             _engine = new Engine();
-            _engine.Load();
+            _engine.Load(this, null);
             _engine.OnNewFrame += (o, e) => Tick(e);
             FormClosing += (o, e) => _engine.Dispose();
             _engine.Start();
@@ -32,7 +32,7 @@ namespace OpenMario
                 g.DrawString(
                     string.Format("FPS: {0}", _engine.CurrentFPS), 
                     new Font("Serif", 12, FontStyle.Bold), 
-                    Brushes.AliceBlue, 
+                    Brushes.Aqua, 
                     new PointF(5, 5));
                 g.Flush();
             }
