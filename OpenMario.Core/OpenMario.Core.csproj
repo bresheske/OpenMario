@@ -39,19 +39,29 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="VectorClass">
+      <HintPath>..\packages\Vector2D.1.0\lib\VectorClass.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actors\BaseActor.cs" />
+    <Compile Include="Actors\CollidableActor.cs" />
+    <Compile Include="Actors\Concrete\FallingBox.cs" />
+    <Compile Include="Actors\GravityActor.cs" />
+    <Compile Include="Actors\MovementActor.cs" />
     <Compile Include="Engine\Engine.cs" />
     <Compile Include="Engine\FrameEventArgs.cs" />
     <Compile Include="Environment\Environment.cs" />
+    <Compile Include="Physics\Physics.cs" />
     <Compile Include="Players\Actions\KeyEventArgs.cs" />
     <Compile Include="Players\BasePlayer.cs" />
-    <Compile Include="Players\Actions\Keymapping.cs" />
+    <Compile Include="Players\Actions\KeyMapping.cs" />
     <Compile Include="Players\PlayerOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CoreDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

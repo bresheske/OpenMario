@@ -28,5 +28,19 @@ namespace OpenMario.Core.Players.Actions
         public Keys Key { get; set; }
         public KeyAction Action { get; set; }
         public KeyPressType PressType { get; set; }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != this.GetType())
+                return false;
+            return this.Action == ((KeyMapping)obj).Action;
+                //&& this.Key == ((KeyMapping)obj).Key
+                //&& this.PressType == ((KeyMapping)obj).PressType;
+        }
     }
 }
