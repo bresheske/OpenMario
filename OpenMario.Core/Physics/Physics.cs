@@ -13,6 +13,13 @@ namespace OpenMario.Core.Physics
         public static readonly VectorClass.Vector2D_Int GRAVITY = new VectorClass.Vector2D_Int(0, -1);
         public static readonly VectorClass.Vector2D_Int MAX_GRAVITY = new VectorClass.Vector2D_Int(0, -9);
 
+        public enum CollisionType
+        {
+            TOP,
+            LEFT,
+            RIGHT,
+            BOTTOM
+        }
 
         public static bool CollidedWith(BaseActor a, BaseActor b)
         {
@@ -26,6 +33,11 @@ namespace OpenMario.Core.Physics
                 .Where(x => x != collidedwith)
                 .Where(x => CollidedWith(x, collidedwith))
                 .ToList();
+        }
+
+        public static CollisionType GetCollisionType(BaseActor a, BaseActor b)
+        {
+            return CollisionType.TOP;
         }
     }
 }

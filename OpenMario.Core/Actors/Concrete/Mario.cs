@@ -27,8 +27,15 @@ namespace OpenMario.Core.Actors.Concrete
         {
             if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.JUMP)
             {
-                //Do a little jumpyjumpy
                 Velocity += new VectorClass.Vector2D_Int(0, 15);
+            }
+            else if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.LEFT)
+            {
+                Velocity += new VectorClass.Vector2D_Int(1, 0);
+            }
+            else if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.RIGHT)
+            {
+                Velocity += new VectorClass.Vector2D_Int(-1, 0);
             }
         }
 
@@ -43,7 +50,7 @@ namespace OpenMario.Core.Actors.Concrete
                 if (c.CollisionAction == CollisionType.BLOCK)
                 {
                     Position = new VectorClass.Vector2D_Int(Position.X, c.Position.Y - Height);
-                    Velocity = new VectorClass.Vector2D_Int(0, 0);
+                    Velocity = new VectorClass.Vector2D_Int(Velocity.X, 0);
                 }
         }
 
