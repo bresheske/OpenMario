@@ -16,10 +16,10 @@ namespace OpenMario.Core.Actors
             NO_ACTION
         }
 
-        public int Width { get; protected set; }
-        public int Height { get; protected set; }
-        public Vector2D_Int Position { get; protected set; }
-        public Vector2D_Int Velocity { get; protected set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Vector2D_Int Position { get; set; }
+        public Vector2D_Int Velocity { get; set; }
         public CollisionType CollisionAction { get; protected set; }
 
         public BaseActor()

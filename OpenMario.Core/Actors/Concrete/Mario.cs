@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VectorClass;
 
 namespace OpenMario.Core.Actors.Concrete
 {
@@ -44,14 +45,7 @@ namespace OpenMario.Core.Actors.Concrete
             //Perform Gravity Updates.
             base.Update(loadedactors);
             //Check for collision
-            var collisions = Physics.Physics.GetAllCollisions(loadedactors, this);
-            //TODO: Currently just assumes Top-Level collision.
-            foreach (var c in collisions)
-                if (c.CollisionAction == CollisionType.BLOCK)
-                {
-                    Position = new VectorClass.Vector2D_Int(Position.X, c.Position.Y - Height);
-                    Velocity = new VectorClass.Vector2D_Int(Velocity.X, 0);
-                }
+            Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
 
         public override void Load()

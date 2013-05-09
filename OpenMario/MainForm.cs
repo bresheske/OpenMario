@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VectorClass;
 
 namespace OpenMario
 {
@@ -37,6 +38,18 @@ namespace OpenMario
             e.Players.Add(new PlayerOne());
             e.Actors.Add(new Mario(e.Players[0]));
             e.Actors.Add(new StaticBox());
+            e.Actors.Add(new StaticBox()
+                             {
+                                 Position = new Vector2D_Int(300, 140),
+                                 Height = 50,
+                                 Width = 50,
+                             });
+            e.Actors.Add(new StaticBox()
+                            {
+                                Position = new Vector2D_Int(10, 140),
+                                Height = 50,
+                                Width = 50,
+                            });
             e.RegisterAllKeys(this);
             e.Load();
             return e;
