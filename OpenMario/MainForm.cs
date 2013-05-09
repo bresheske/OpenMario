@@ -35,9 +35,10 @@ namespace OpenMario
         {
             var e = new Core.Environment.Environment();
             e.Players.Add(new PlayerOne());
-            e.Actors.Add(new FallingBox(e.Players[0]));
+            e.Actors.Add(new Mario(e.Players[0]));
             e.Actors.Add(new StaticBox());
             e.RegisterAllKeys(this);
+            e.Load();
             return e;
         }
 

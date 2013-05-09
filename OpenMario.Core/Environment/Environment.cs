@@ -39,5 +39,12 @@ namespace OpenMario.Core.Environment
             foreach (var a in Actors)
                 a.Draw(g);
         }
+
+        public void Load()
+        {
+            //TODO: Don't just load all.
+            foreach (var a in Actors)
+                a.Load();
+        }
     }
 }

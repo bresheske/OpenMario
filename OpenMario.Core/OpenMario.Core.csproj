@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\BaseActor.cs" />
-    <Compile Include="Actors\Concrete\FallingBox.cs" />
+    <Compile Include="Actors\Concrete\Mario.cs" />
     <Compile Include="Actors\Concrete\StaticBox.cs" />
     <Compile Include="Actors\GravityActor.cs" />
     <Compile Include="Actors\MovementActor.cs" />
@@ -63,7 +63,11 @@
     <None Include="CoreDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\mario.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

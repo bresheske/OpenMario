@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace OpenMario.Core.Actors.Concrete
 {
-    public class FallingBox : GravityActor
+    public class Mario : GravityActor
     {
         private BasePlayer _player;
+        private Bitmap _drawable;
 
-        public FallingBox(BasePlayer player)
+        public Mario(BasePlayer player)
         {
-            Width = 20;
-            Height = 20;
+            Width = 30;
+            Height = 40;
             Position = new VectorClass.Vector2D_Int(200, 0);
 
             _player = player;
@@ -47,12 +48,13 @@ namespace OpenMario.Core.Actors.Concrete
 
         public override void Load()
         {
-            
+            _drawable = (Bitmap)Image.FromFile(@"Assets\mario.png");
+            _drawable = new Bitmap(_drawable, new Size(Width, Height));
         }
 
         public override void Draw(System.Drawing.Graphics g)
         {
-            g.FillRectangle(Brushes.RoyalBlue, new Rectangle(Position.X, Position.Y, Width, Height));
+            g.DrawImage(_drawable, Position.X, Position.Y);
         }
     }
 }
