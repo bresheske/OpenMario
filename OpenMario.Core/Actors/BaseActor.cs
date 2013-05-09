@@ -10,15 +10,23 @@ namespace OpenMario.Core.Actors
 {
     public abstract class BaseActor
     {
+        public enum CollisionType
+        {
+            BLOCK,
+            NO_ACTION
+        }
+
         public int Width { get; protected set; }
         public int Height { get; protected set; }
         public Vector2D_Int Position { get; protected set; }
         public Vector2D_Int Velocity { get; protected set; }
+        public CollisionType CollisionAction { get; protected set; }
 
         public BaseActor()
         {
             Position = new Vector2D_Int(0, 0);
             Velocity = new Vector2D_Int(0, 0);
+            CollisionAction = BaseActor.CollisionType.NO_ACTION;
         }
 
         public abstract void Update(List<BaseActor> loadedactors);

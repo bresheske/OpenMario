@@ -50,11 +50,11 @@ namespace OpenMario.Core.Players
                       PressType = Actions.KeyMapping.KeyPressType.UP,},
                 
                 new Actions.KeyMapping()
-                    { Action = Actions.KeyMapping.KeyAction.SHOOT, 
+                    { Action = Actions.KeyMapping.KeyAction.JUMP, 
                       Key = System.Windows.Forms.Keys.Space,
                       PressType = Actions.KeyMapping.KeyPressType.DOWN,},
                 new Actions.KeyMapping()
-                    { Action = Actions.KeyMapping.KeyAction.SHOOT, 
+                    { Action = Actions.KeyMapping.KeyAction.JUMP, 
                       Key = System.Windows.Forms.Keys.Space,
                       PressType = Actions.KeyMapping.KeyPressType.UP,},
             };

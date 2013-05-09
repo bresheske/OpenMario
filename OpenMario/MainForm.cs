@@ -34,8 +34,9 @@ namespace OpenMario
         public Core.Environment.Environment LoadDefaultEnvironment()
         {
             var e = new Core.Environment.Environment();
-            e.Actors.Add(new FallingBox());
             e.Players.Add(new PlayerOne());
+            e.Actors.Add(new FallingBox(e.Players[0]));
+            e.Actors.Add(new StaticBox());
             e.RegisterAllKeys(this);
             return e;
         }
@@ -65,30 +66,30 @@ namespace OpenMario
                 Brushes.Aqua,
                 new PointF(5, 5));
 
-            if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.SHOOT }))
-                g.FillEllipse(Brushes.Aquamarine, new Rectangle(50, 80, 8, 8));
+            if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.JUMP }))
+                g.FillEllipse(Brushes.Aquamarine, new Rectangle(50, 60, 8, 8));
             else
-                g.FillEllipse(Brushes.Red, new Rectangle(50, 80, 8, 8));
+                g.FillEllipse(Brushes.Red, new Rectangle(50, 60, 8, 8));
 
             if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.UP }))
+                g.FillRectangle(Brushes.Aquamarine, new Rectangle(50, 80, 8, 15));
+            else
+                g.FillRectangle(Brushes.Red, new Rectangle(50, 80, 8, 15));
+
+            if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.DOWN }))
                 g.FillRectangle(Brushes.Aquamarine, new Rectangle(50, 100, 8, 15));
             else
                 g.FillRectangle(Brushes.Red, new Rectangle(50, 100, 8, 15));
 
-            if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.DOWN }))
-                g.FillRectangle(Brushes.Aquamarine, new Rectangle(50, 120, 8, 15));
-            else
-                g.FillRectangle(Brushes.Red, new Rectangle(50, 120, 8, 15));
-
             if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.RIGHT }))
-                g.FillRectangle(Brushes.Aquamarine, new Rectangle(61, 113, 15, 8));
+                g.FillRectangle(Brushes.Aquamarine, new Rectangle(61, 93, 15, 8));
             else
-                g.FillRectangle(Brushes.Red, new Rectangle(61, 113, 15, 8));
+                g.FillRectangle(Brushes.Red, new Rectangle(61, 93, 15, 8));
 
             if (_environment.Players[0].IsActionPressed(new Core.Players.Actions.KeyMapping() { Action = Core.Players.Actions.KeyMapping.KeyAction.LEFT }))
-                g.FillRectangle(Brushes.Aquamarine, new Rectangle(32, 113, 15, 8));
+                g.FillRectangle(Brushes.Aquamarine, new Rectangle(32, 93, 15, 8));
             else
-                g.FillRectangle(Brushes.Red, new Rectangle(32, 113, 15, 8));
+                g.FillRectangle(Brushes.Red, new Rectangle(32, 93, 15, 8));
 
             g.Flush();
         }

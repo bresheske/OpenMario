@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\BaseActor.cs" />
-    <Compile Include="Actors\CollidableActor.cs" />
     <Compile Include="Actors\Concrete\FallingBox.cs" />
+    <Compile Include="Actors\Concrete\StaticBox.cs" />
     <Compile Include="Actors\GravityActor.cs" />
     <Compile Include="Actors\MovementActor.cs" />
     <Compile Include="Engine\Engine.cs" />
