@@ -38,6 +38,7 @@ namespace OpenMario.Core.Actors.Concrete
             base.Update(loadedactors);
             //Check for collision
             var collisions = Physics.Physics.GetAllCollisions(loadedactors, this);
+            //TODO: Currently just assumes Top-Level collision.
             foreach (var c in collisions)
                 if (c.CollisionAction == CollisionType.BLOCK)
                 {
