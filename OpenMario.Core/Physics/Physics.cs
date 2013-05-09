@@ -10,7 +10,7 @@ namespace OpenMario.Core.Physics
 {
     public static class Physics
     {
-        public static readonly int MAX_MOVEMENT_SPEED = 7;
+        public static readonly int MAX_MOVEMENT_SPEED = 15;
 
         public static readonly VectorClass.Vector2D_Int GRAVITY = new VectorClass.Vector2D_Int(0, -1);
         public static readonly VectorClass.Vector2D_Int MAX_GRAVITY = new VectorClass.Vector2D_Int(0, -MAX_MOVEMENT_SPEED);
@@ -78,7 +78,7 @@ namespace OpenMario.Core.Physics
         public static bool IsActorPushingAnotherFromBottom(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)
-                   && IsWithinMaxThreshold(a.Position.Y, b.Position.Y + b.Height);
+                && IsWithinMaxThreshold(a.Position.Y, b.Position.Y + b.Height);
         }
 
         public static void BlockAllCollisions(BaseActor a, List<BaseActor> loadedactors)
@@ -110,7 +110,7 @@ namespace OpenMario.Core.Physics
                 {
                     //OnBottom
                     a.Position = new Vector2D_Int(a.Position.X, c.Position.Y + c.Height);
-                    a.Velocity = new Vector2D_Int(a.Velocity.X, -a.Velocity.Y);
+                    a.Velocity = new Vector2D_Int(a.Velocity.X, 0);
                 }
             }
         }

@@ -50,6 +50,12 @@ namespace OpenMario
                                 Height = 50,
                                 Width = 50,
                             });
+            e.Actors.Add(new StaticBox()
+                            {
+                                Position = new Vector2D_Int(100, 60),
+                                Height = 50,
+                                Width = 50,
+                            });
             e.RegisterAllKeys(this);
             e.Load();
             return e;

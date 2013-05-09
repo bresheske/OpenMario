@@ -28,7 +28,7 @@ namespace OpenMario.Core.Actors.Concrete
         {
             if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.JUMP)
             {
-                Velocity += new VectorClass.Vector2D_Int(0, 15);
+                Velocity += new VectorClass.Vector2D_Int(0, Physics.Physics.MAX_MOVEMENT_SPEED);
             }
             else if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.LEFT)
             {
