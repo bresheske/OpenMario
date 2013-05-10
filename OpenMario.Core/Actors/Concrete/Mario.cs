@@ -9,7 +9,10 @@ namespace OpenMario.Core.Actors.Concrete
     public class Mario : GravityActor
     {
         private BasePlayer _player;
-        private Bitmap _drawable;
+
+        private Bitmap _drawableright;
+        private Bitmap _drawableleft;
+        private Bitmap _currbitmap;
 
         public Mario(BasePlayer player)
         {
@@ -34,10 +37,12 @@ namespace OpenMario.Core.Actors.Concrete
             //Perform Left/Right Velocity Updates.
             if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
             {
+                _currbitmap = _drawableleft;
                 Velocity += new Vector2D_Dbl(Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
             {
+                _currbitmap = _drawableright;
                 Velocity += new Vector2D_Dbl(-Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else
@@ -54,13 +59,16 @@ namespace OpenMario.Core.Actors.Concrete
 
         public override void Load()
         {
-            _drawable = (Bitmap)Image.FromFile(@"Assets\mario.png");
-            _drawable = new Bitmap(_drawable, new Size(Width, Height));
+            _drawableright = (Bitmap)Image.FromFile(@"Assets\marior.png");
+            _drawableright = new Bitmap(_drawableright, new Size(Width, Height));
+            _drawableleft = (Bitmap)Image.FromFile(@"Assets\mariol.png");
+            _drawableleft = new Bitmap(_drawableleft, new Size(Width, Height));
+            _currbitmap = _drawableright;
         }
 
         public override void Draw(Graphics g)
         {
-            g.DrawImage(_drawable, (int)Position.X, (int)Position.Y);
+            g.DrawImage(_currbitmap, (int)Position.X, (int)Position.Y);
         }
     }
 }
