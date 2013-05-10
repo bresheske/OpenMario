@@ -18,15 +18,15 @@ namespace OpenMario.Core.Actors
 
         public int Width { get; set; }
         public int Height { get; set; }
-        public Vector2D_Int Position { get; set; }
-        public Vector2D_Int Velocity { get; set; }
+        public Vector2D_Dbl Position { get; set; }
+        public Vector2D_Dbl Velocity { get; set; }
         public CollisionType CollisionAction { get; protected set; }
 
-        public BaseActor()
+        protected BaseActor()
         {
-            Position = new Vector2D_Int(0, 0);
-            Velocity = new Vector2D_Int(0, 0);
-            CollisionAction = BaseActor.CollisionType.NO_ACTION;
+            Position = new Vector2D_Dbl(0, 0);
+            Velocity = new Vector2D_Dbl(0, 0);
+            CollisionAction = CollisionType.NO_ACTION;
         }
 
         public abstract void Update(List<BaseActor> loadedactors);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OpenMario.Core.Actors
 {
@@ -15,9 +10,9 @@ namespace OpenMario.Core.Actors
 
         public override void Move()
         {
-            if (this.Velocity.Y < Physics.Physics.MAX_GRAVITY.Y)
+            if (Velocity.Y < Physics.Physics.MAX_GRAVITY.Y)
                 this.Velocity -= Physics.Physics.GRAVITY;
-            else if (this.Velocity.Y > Physics.Physics.MAX_GRAVITY.Y)
+            else if (Velocity.Y > Physics.Physics.MAX_GRAVITY.Y)
                 this.Velocity += Physics.Physics.GRAVITY;
 
             Position -= Velocity;

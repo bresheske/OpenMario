@@ -1,15 +1,8 @@
-﻿using OpenMario.Core.Actors;
-using OpenMario.Core.Actors.Concrete;
+﻿using OpenMario.Core.Actors.Concrete;
 using OpenMario.Core.Engine;
 using OpenMario.Core.Players;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VectorClass;
 
@@ -40,19 +33,19 @@ namespace OpenMario
             e.Actors.Add(new StaticBox());
             e.Actors.Add(new StaticBox()
                              {
-                                 Position = new Vector2D_Int(300, 140),
+                                 Position = new Vector2D_Dbl(300, 140),
                                  Height = 50,
                                  Width = 50,
                              });
             e.Actors.Add(new StaticBox()
                             {
-                                Position = new Vector2D_Int(10, 140),
+                                Position = new Vector2D_Dbl(10, 140),
                                 Height = 50,
                                 Width = 50,
                             });
             e.Actors.Add(new StaticBox()
                             {
-                                Position = new Vector2D_Int(100, 60),
+                                Position = new Vector2D_Dbl(100, 60),
                                 Height = 50,
                                 Width = 50,
                             });

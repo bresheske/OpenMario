@@ -11,7 +11,7 @@ namespace OpenMario.Core.Actors.Concrete
     {
         public StaticBox()
         {
-            Position = new VectorClass.Vector2D_Int(20, 200);
+            Position = new VectorClass.Vector2D_Dbl(20, 200);
             Height = 10;
             Width = 300;
             CollisionAction = CollisionType.BLOCK;
@@ -27,9 +27,9 @@ namespace OpenMario.Core.Actors.Concrete
             
         }
 
-        public override void Draw(System.Drawing.Graphics g)
+        public override void Draw(Graphics g)
         {
-            g.FillRectangle(Brushes.SeaGreen, new Rectangle(Position.X, Position.Y, Width, Height));
+            g.FillRectangle(Brushes.SeaGreen, new Rectangle((int)Position.X, (int)Position.Y, Width, Height));
         }
     }
 }

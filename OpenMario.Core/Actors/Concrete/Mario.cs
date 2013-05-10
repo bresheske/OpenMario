@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenMario.Core.Players.Actions;
 using VectorClass;
 
 namespace OpenMario.Core.Actors.Concrete
@@ -18,25 +19,17 @@ namespace OpenMario.Core.Actors.Concrete
         {
             Width = 30;
             Height = 40;
-            Position = new VectorClass.Vector2D_Int(200, 0);
+            Position = new VectorClass.Vector2D_Dbl(200, 0);
 
             _player = player;
             _player.OnKeyDown += KeyAction;
         }
 
-        private void KeyAction(Object o, OpenMario.Core.Players.Actions.KeyEventArgs e)
+        private void KeyAction(Object o, KeyEventArgs e)
         {
-            if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.JUMP)
+            if (e.KeyMapping.Action == KeyMapping.KeyAction.JUMP)
             {
-                Velocity += new VectorClass.Vector2D_Int(0, Physics.Physics.MAX_MOVEMENT_SPEED);
-            }
-            else if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.LEFT)
-            {
-                Velocity += new VectorClass.Vector2D_Int(1, 0);
-            }
-            else if (e.KeyMapping.Action == Players.Actions.KeyMapping.KeyAction.RIGHT)
-            {
-                Velocity += new VectorClass.Vector2D_Int(-1, 0);
+                Velocity += new Vector2D_Dbl(0, Physics.Physics.MAX_MOVEMENT_SPEED);
             }
         }
 
@@ -44,6 +37,22 @@ namespace OpenMario.Core.Actors.Concrete
         {
             //Perform Gravity Updates.
             base.Update(loadedactors);
+            //Perform Left/Right Velocity Updates.
+            if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
+            {
+                Velocity += new Vector2D_Dbl(1, 0);
+            }
+            else if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
+            {
+                Velocity += new Vector2D_Dbl(-1, 0);
+            }
+            else
+            {
+                Physics.Physics.ApplyGroundFriction(this, loadedactors);
+            }
+            
+            //Normalize Velocities to only allow maximum speeds.
+            Physics.Physics.NormalizeVelocity(this);
             //Check for collision
             Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
@@ -54,9 +63,9 @@ namespace OpenMario.Core.Actors.Concrete
             _drawable = new Bitmap(_drawable, new Size(Width, Height));
         }
 
-        public override void Draw(System.Drawing.Graphics g)
+        public override void Draw(Graphics g)
         {
-            g.DrawImage(_drawable, Position.X, Position.Y);
+            g.DrawImage(_drawable, (int)Position.X, (int)Position.Y);
         }
     }
 }
