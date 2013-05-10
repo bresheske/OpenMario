@@ -1,5 +1,4 @@
 ﻿using OpenMario.Core.Players;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using OpenMario.Core.Players.Actions;
@@ -20,7 +19,6 @@ namespace OpenMario.Core.Actors.Concrete
             _player = player;
         }
 
-
         public override void Update(List<BaseActor> loadedactors)
         {
             //Perform Gravity Updates.
@@ -36,11 +34,11 @@ namespace OpenMario.Core.Actors.Concrete
             //Perform Left/Right Velocity Updates.
             if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
             {
-                Velocity += new Vector2D_Dbl(1, 0);
+                Velocity += new Vector2D_Dbl(Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
             {
-                Velocity += new Vector2D_Dbl(-1, 0);
+                Velocity += new Vector2D_Dbl(-Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else
             {

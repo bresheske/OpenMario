@@ -13,6 +13,7 @@ namespace OpenMario.Core.Physics
         public const double AIR_FRICTION_DELTA = .9d;
         public const double MAX_MOVEMENT_SPEED = 14d;
         public const double MAX_JUMP_SPEED = 12d;
+        public const double MOVEMENT_DELTA = .4d;
 
         public static readonly Vector2D_Dbl GRAVITY = new Vector2D_Dbl(0d, -.6d);
         public static readonly Vector2D_Dbl MAX_GRAVITY = new Vector2D_Dbl(0d, -MAX_MOVEMENT_SPEED);
