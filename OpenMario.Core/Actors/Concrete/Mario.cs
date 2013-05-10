@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenMario.Core.Players.Actions;
 using VectorClass;
 
@@ -19,24 +16,23 @@ namespace OpenMario.Core.Actors.Concrete
         {
             Width = 30;
             Height = 40;
-            Position = new VectorClass.Vector2D_Dbl(200, 0);
-
+            Position = new Vector2D_Dbl(200, 0);
             _player = player;
-            _player.OnKeyDown += KeyAction;
         }
 
-        private void KeyAction(Object o, KeyEventArgs e)
-        {
-            if (e.KeyMapping.Action == KeyMapping.KeyAction.JUMP)
-            {
-                Velocity += new Vector2D_Dbl(0, Physics.Physics.MAX_MOVEMENT_SPEED);
-            }
-        }
 
         public override void Update(List<BaseActor> loadedactors)
         {
             //Perform Gravity Updates.
             base.Update(loadedactors);
+
+            //Perform Jumps
+            if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.JUMP }))
+            {
+                if (Physics.Physics.IsActorStandingOnAnother(this, loadedactors))
+                    Velocity += new Vector2D_Dbl(0, Physics.Physics.MAX_JUMP_SPEED);
+            }
+
             //Perform Left/Right Velocity Updates.
             if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
             {
@@ -53,7 +49,8 @@ namespace OpenMario.Core.Actors.Concrete
             
             //Normalize Velocities to only allow maximum speeds.
             Physics.Physics.NormalizeVelocity(this);
-            //Check for collision
+
+            //Block all Collisions with 'Block' set.
             Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
 

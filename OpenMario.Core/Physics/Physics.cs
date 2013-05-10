@@ -9,12 +9,12 @@ namespace OpenMario.Core.Physics
 {
     public static class Physics
     {
-        public const double GROUND_FRICTION_DELTA = 1.5d;
-        public const double AIR_FRICTION_DELTA = .3d;
-        public const double MAX_MOVEMENT_SPEED = 15d;
+        public const double GROUND_FRICTION_DELTA = 1.4d;
+        public const double AIR_FRICTION_DELTA = .9d;
+        public const double MAX_MOVEMENT_SPEED = 14d;
+        public const double MAX_JUMP_SPEED = 12d;
 
-
-        public static readonly Vector2D_Dbl GRAVITY = new Vector2D_Dbl(0d, -1d);
+        public static readonly Vector2D_Dbl GRAVITY = new Vector2D_Dbl(0d, -.6d);
         public static readonly Vector2D_Dbl MAX_GRAVITY = new Vector2D_Dbl(0d, -MAX_MOVEMENT_SPEED);
 
         public enum CollisionType
@@ -99,7 +99,7 @@ namespace OpenMario.Core.Physics
                 {
                     //Standing
                     a.Position = new Vector2D_Dbl(a.Position.X, c.Position.Y - a.Height);
-                    a.Velocity = new Vector2D_Dbl(a.Velocity.X, 0);
+                    a.Velocity = new Vector2D_Dbl(a.Velocity.X, a.Velocity.Y < 0 ? 0 : a.Velocity.Y);
                 }
                 else if (IsActorPushingAnotherFromLeft(a, c))
                 {
@@ -140,7 +140,7 @@ namespace OpenMario.Core.Physics
 
             //standing on ground, apply friction.
             if (Math.Abs(a.Velocity.X - GROUND_FRICTION_DELTA) < GROUND_FRICTION_DELTA)
-                a.Velocity = new Vector2D_Dbl(0,0);
+                a.Velocity = new Vector2D_Dbl(0, a.Velocity.Y);
             else if (a.Velocity.X > 0)
                 a.Velocity += new Vector2D_Dbl(-GROUND_FRICTION_DELTA, 0);
             else if (a.Velocity.X < 0)
@@ -153,7 +153,7 @@ namespace OpenMario.Core.Physics
 
             //in air, apply friction.
             if (Math.Abs(a.Velocity.X - AIR_FRICTION_DELTA) < AIR_FRICTION_DELTA)
-                a.Velocity = new Vector2D_Dbl(0, 0);
+                a.Velocity = new Vector2D_Dbl(0, a.Velocity.Y);
             else if (a.Velocity.X > 0)
                 a.Velocity += new Vector2D_Dbl(-AIR_FRICTION_DELTA, 0);
             else if (a.Velocity.X < 0)
