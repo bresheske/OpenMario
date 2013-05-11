@@ -14,20 +14,27 @@ namespace OpenMario.Environments.OnePlayerEnvironments
 
         public LevelOne()
         {
-            Players.Add(new PlayerOne());
-            Actors.Add(new Mario(Players[0]));
 
+            Players.Add(new PlayerOne());
+            
+            //Backgrounds
+            Actors.Add(new Cloud());
+
+            //Actors
             Actors.Add(new OrangeLand()
             {
                 Position = new Vector2D_Dbl(0, 400),
                 Width = 1500,
                 Height = 10
             });
-
             Actors.Add(new QuestionBox()
             {
                 Position = new Vector2D_Dbl(300, 300)
             });
+
+
+            //Players
+            Actors.Add(new Mario(Players[0]));
 
             this.Width = 1500;
         }
