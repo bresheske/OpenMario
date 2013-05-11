@@ -32,9 +32,9 @@ namespace OpenMario
         {
             using (var g = Graphics.FromImage(e.Frame))
             {
-                DrawDebug(g);
                 _environment.Update();
                 _environment.Render(g);
+                DrawDebug(g);
                 g.Flush();
             }
             

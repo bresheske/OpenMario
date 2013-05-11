@@ -14,7 +14,10 @@ namespace OpenMario.Environments.OnePlayerEnvironments
 
         public LevelOne()
         {
+            //Sounds
+            MusicAsset = @"Assets\smbfull.mp3";
 
+            //Controls
             Players.Add(new PlayerOne());
             
             //Backgrounds

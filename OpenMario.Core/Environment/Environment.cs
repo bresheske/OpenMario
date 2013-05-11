@@ -4,14 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VectorClass;
+using WMPLib;
 
 namespace OpenMario.Core.Environment
 {
-    public abstract class Environment
+    public abstract class Environment : IDisposable
     {
         //TODO - StartPos not used yet.
         public Point StartingPosition { get; set; }
@@ -19,6 +21,9 @@ namespace OpenMario.Core.Environment
         public List<BaseActor> Actors { get; set; }
         public Vector2D_Dbl ViewportPosition { get; set; }
         public Vector2D_Dbl ViewportVelocity { get; set; }
+
+        public WindowsMediaPlayer MusicPlayer { get; set; }
+        public string MusicAsset { get; set; }
 
         public int Width { get; set; }
         public int Height { get; set; }
@@ -91,6 +96,18 @@ namespace OpenMario.Core.Environment
             //TODO: Don't just load all, load in what is in the viewport.
             foreach (var a in Actors)
                 a.Load(this);
+
+            //Music
+            if (!string.IsNullOrWhiteSpace(MusicAsset))
+            {
+                MusicPlayer = new WMPLib.WindowsMediaPlayer();
+                MusicPlayer.URL = MusicAsset;
+                MusicPlayer.controls.play();
+            }
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
