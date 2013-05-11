@@ -11,17 +11,19 @@ namespace OpenMario.Core.Actors.Concrete
     {
         private Bitmap _drawable;
 
-        public override void Load()
+        public override void Load(Environment.Environment env)
         {
+            Environment = env;
             _drawable = (Bitmap)Image.FromFile("assets/land.png");
         }
 
         public override void Draw(System.Drawing.Graphics g)
         {
-            var curw = 0;
+            var pos = Environment.CalculateRelativePosition(this);
+            var curw = pos.X;
             while (curw < Width)
             {
-                g.DrawImage(_drawable, (int)curw, (int)Position.Y);
+                g.DrawImage(_drawable, (int)curw, (int)pos.Y);
                 curw += _drawable.Width;
             }
         }

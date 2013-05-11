@@ -18,6 +18,7 @@ namespace OpenMario
         {
             InitializeComponent();
             _environment = new LevelOne();
+            _environment.Load();
             _environment.RegisterAllKeys(this);
 
             _engine = new Engine();

@@ -18,17 +18,18 @@ namespace OpenMario.Core.Actors.Concrete
 
         public override void Update(List<BaseActor> loadedactors)
         {
-            
+            Position += Velocity;
         }
 
-        public override void Load()
+        public override void Load(Environment.Environment env)
         {
-            
+            Environment = env;
         }
 
         public override void Draw(Graphics g)
         {
-            g.FillRectangle(Brushes.SeaGreen, new Rectangle((int)Position.X, (int)Position.Y, Width, Height));
+            var pos = Environment.CalculateRelativePosition(this);
+            g.FillRectangle(Brushes.SeaGreen, new Rectangle((int)pos.X, (int)pos.Y, Width, Height));
         }
     }
 }

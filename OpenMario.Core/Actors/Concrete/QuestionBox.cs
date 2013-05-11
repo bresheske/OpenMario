@@ -17,15 +17,17 @@ namespace OpenMario.Core.Actors.Concrete
             Height = 30;
         }
 
-        public override void Load()
+        public override void Load(Environment.Environment env)
         {
+            Environment = env;
             _drawable = (Bitmap)Image.FromFile("Assets/questionblock.png");
             _drawable = new Bitmap(_drawable, new Size(Width, Height));
         }
 
         public override void Draw(System.Drawing.Graphics g)
         {
-            g.DrawImage(_drawable, (int)Position.X, (int)Position.Y);
+            var pos = Environment.CalculateRelativePosition(this);
+            g.DrawImage(_drawable, (int)pos.X, (int)pos.Y);
         }
     }
 }

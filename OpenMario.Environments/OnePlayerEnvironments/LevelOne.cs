@@ -29,7 +29,7 @@ namespace OpenMario.Environments.OnePlayerEnvironments
                 Position = new Vector2D_Dbl(300, 300)
             });
 
-            Load();
+            this.Width = 1500;
         }
     }
 }

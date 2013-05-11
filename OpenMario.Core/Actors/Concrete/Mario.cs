@@ -20,6 +20,7 @@ namespace OpenMario.Core.Actors.Concrete
             Height = 40;
             Position = new Vector2D_Dbl(200, 0);
             _player = player;
+            EnvironmentEffect = EnvironmentEffectType.CONTROLS_VIEWPORT_SCROLL;
         }
 
         public override void Update(List<BaseActor> loadedactors)
@@ -57,18 +58,20 @@ namespace OpenMario.Core.Actors.Concrete
             Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
 
-        public override void Load()
+        public override void Load(Environment.Environment env)
         {
             _drawableright = (Bitmap)Image.FromFile(@"Assets\marior.png");
             _drawableright = new Bitmap(_drawableright, new Size(Width, Height));
             _drawableleft = (Bitmap)Image.FromFile(@"Assets\mariol.png");
             _drawableleft = new Bitmap(_drawableleft, new Size(Width, Height));
             _currbitmap = _drawableright;
+            Environment = env;
         }
 
         public override void Draw(Graphics g)
         {
-            g.DrawImage(_currbitmap, (int)Position.X, (int)Position.Y);
+            var pos = Environment.CalculateRelativePosition(this);
+            g.DrawImage(_currbitmap, (int)pos.X, (int)pos.Y);
         }
     }
 }
