@@ -86,6 +86,10 @@
       <Project>{cd3461fd-c3c3-48cf-96d5-f50b1f5bfab5}</Project>
       <Name>OpenMario.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenMario.Environments\OpenMario.Environments.csproj">
+      <Project>{3296488f-7aa8-4a04-b452-3336089a8d7d}</Project>
+      <Name>OpenMario.Environments</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

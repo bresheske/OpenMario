@@ -1,6 +1,7 @@
 ﻿using OpenMario.Core.Actors.Concrete;
 using OpenMario.Core.Engine;
 using OpenMario.Core.Players;
+using OpenMario.Environments.OnePlayerEnvironments;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,42 +17,14 @@ namespace OpenMario
         public MainForm()
         {
             InitializeComponent();
-            _environment = LoadDefaultEnvironment();
+            _environment = new LevelOne();
+            _environment.RegisterAllKeys(this);
 
             _engine = new Engine();
             _engine.Load(this, null);
             _engine.OnNewFrame += (o, e) => Tick(e);
             FormClosing += (o, e) => _engine.Dispose();
             _engine.Start();
-        }
-
-        public Core.Environment.Environment LoadDefaultEnvironment()
-        {
-            var e = new Core.Environment.Environment();
-            e.Players.Add(new PlayerOne());
-            e.Actors.Add(new Mario(e.Players[0]));
-            e.Actors.Add(new StaticBox());
-            e.Actors.Add(new StaticBox()
-                             {
-                                 Position = new Vector2D_Dbl(300, 140),
-                                 Height = 50,
-                                 Width = 50,
-                             });
-            e.Actors.Add(new StaticBox()
-                            {
-                                Position = new Vector2D_Dbl(10, 140),
-                                Height = 50,
-                                Width = 50,
-                            });
-            e.Actors.Add(new StaticBox()
-                            {
-                                Position = new Vector2D_Dbl(100, 60),
-                                Height = 50,
-                                Width = 50,
-                            });
-            e.RegisterAllKeys(this);
-            e.Load();
-            return e;
         }
 
         public void Tick(FrameEventArgs e)

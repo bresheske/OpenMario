@@ -9,11 +9,10 @@ namespace OpenMario.Core.Actors.Concrete
 {
     public class StaticBox : BaseActor
     {
+
         public StaticBox()
         {
-            Position = new VectorClass.Vector2D_Dbl(20, 200);
-            Height = 10;
-            Width = 300;
+            Position = new VectorClass.Vector2D_Dbl(0, 0);
             CollisionAction = CollisionType.BLOCK;
         }
 

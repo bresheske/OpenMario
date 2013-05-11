@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD3461FD-C3C3-48CF-96D5-F50B1F5BFAB5}</ProjectGuid>
+    <ProjectGuid>{3296488F-7AA8-4A04-B452-3336089A8D7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenMario.Core</RootNamespace>
-    <AssemblyName>OpenMario.Core</AssemblyName>
+    <RootNamespace>OpenMario.Environments</RootNamespace>
+    <AssemblyName>OpenMario.Environments</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -34,52 +34,28 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="VectorClass">
+    <Reference Include="VectorClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Vector2D.1.0\lib\VectorClass.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\BaseActor.cs" />
-    <Compile Include="Actors\Concrete\Mario.cs" />
-    <Compile Include="Actors\Concrete\OrangeLand.cs" />
-    <Compile Include="Actors\Concrete\QuestionBox.cs" />
-    <Compile Include="Actors\Concrete\StaticBox.cs" />
-    <Compile Include="Actors\GravityActor.cs" />
-    <Compile Include="Actors\MovementActor.cs" />
-    <Compile Include="Engine\Engine.cs" />
-    <Compile Include="Engine\FrameEventArgs.cs" />
-    <Compile Include="Environment\Environment.cs" />
-    <Compile Include="Physics\Physics.cs" />
-    <Compile Include="Players\Actions\KeyEventArgs.cs" />
-    <Compile Include="Players\BasePlayer.cs" />
-    <Compile Include="Players\Actions\KeyMapping.cs" />
-    <Compile Include="Players\PlayerOne.cs" />
+    <Compile Include="OnePlayerEnvironments\LevelOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CoreDiagram.cd" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\OpenMario.Core\OpenMario.Core.csproj">
+      <Project>{cd3461fd-c3c3-48cf-96d5-f50b1f5bfab5}</Project>
+      <Name>OpenMario.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\land.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\mariol.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\marior.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\questionblock.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
