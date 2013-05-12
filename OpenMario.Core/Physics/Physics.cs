@@ -60,7 +60,7 @@ namespace OpenMario.Core.Physics
             return Math.Abs(value - other) <= MAX_MOVEMENT_SPEED;
         }
 
-        public static bool IsActorStandingOnAnother(BaseActor a, List<BaseActor> loaded )
+        public static bool IsActorStandingOnAnother(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorStandingOnAnother(a, b));
         }

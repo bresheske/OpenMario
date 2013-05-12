@@ -69,6 +69,13 @@ namespace OpenMario.Core.Actors.Concrete
                 WalkingVelocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, WalkingVelocity.Y);
             }
 
+            //If we got stomped on, we'll need to die.
+            if (Physics.Physics.IsActorPushingAnotherFromBottom(this, loadedactors))
+            {
+                //Queue the removal. 
+                Environment.ActorsToRemove.Add(this);
+            }
+
             //Normalize Velocities to only allow maximum speeds.
             Physics.Physics.NormalizeVelocity(this);
 

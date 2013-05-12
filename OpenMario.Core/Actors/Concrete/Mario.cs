@@ -14,6 +14,8 @@ namespace OpenMario.Core.Actors.Concrete
         private Bitmap _drawableleft;
         private Bitmap _currbitmap;
 
+        public bool IsAlive { get; set; }
+
         public Mario(BasePlayer player)
         {
             Width = 30;
@@ -21,6 +23,7 @@ namespace OpenMario.Core.Actors.Concrete
             Position = new Vector2D_Dbl(200, 0);
             _player = player;
             EnvironmentEffect = EnvironmentEffectType.CONTROLS_VIEWPORT_SCROLL;
+            IsAlive = true;
         }
 
         public override void Update(List<BaseActor> loadedactors)
@@ -51,6 +54,12 @@ namespace OpenMario.Core.Actors.Concrete
                 Physics.Physics.ApplyGroundFriction(this, loadedactors);
             }
             
+            //Check if we need to die.
+            if (Position.Y > Environment.Height)
+            {
+                IsAlive = false;
+            }
+
             //Normalize Velocities to only allow maximum speeds.
             Physics.Physics.NormalizeVelocity(this);
 
