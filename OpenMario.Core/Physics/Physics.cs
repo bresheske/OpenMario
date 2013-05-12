@@ -65,6 +65,21 @@ namespace OpenMario.Core.Physics
             return loaded.Any(b => IsActorStandingOnAnother(a, b));
         }
 
+        public static bool IsActorPushingAnotherFromLeft(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromLeft(a, b));
+        }
+
+        public static bool IsActorPushingAnotherFromRight(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromRight(a, b));
+        }
+
+        public static bool IsActorPushingAnotherFromBottom(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromBottom(a, b));
+        }
+
         public static bool IsActorStandingOnAnother(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)

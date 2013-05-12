@@ -34,7 +34,19 @@ namespace OpenMario.Environments.OnePlayerEnvironments
             {
                 Position = new Vector2D_Dbl(300, 300)
             });
-
+            Actors.Add(new Goomba()
+            {
+                Position = new Vector2D_Dbl(400, 100),
+                WalkingVelocity = new Vector2D_Dbl(1, 0)
+            });
+            Actors.Add(new GreenStaticPipe()
+            {
+                Position = new Vector2D_Dbl(380, 340)
+            });
+            Actors.Add(new GreenStaticPipe()
+            {
+                Position = new Vector2D_Dbl(520, 340)
+            });
 
             //Players
             Actors.Add(new Mario(Players[0]));

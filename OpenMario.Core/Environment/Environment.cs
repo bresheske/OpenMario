@@ -62,15 +62,15 @@ namespace OpenMario.Core.Environment
             {
                 //Lets update the viewport if the actor is controlling our scroll.
                 var leftthresh = (double)ViewportWidth * (1d / 3d);
-                var rightthresh = (double)ViewportWidth * (2d / 3d);
-                //if the actor is in the right-most 1/3 of our screen.
+                var rightthresh = (double)ViewportWidth * (1d / 2d);
+                
                 if (CalculateRelativePosition(a).X <= leftthresh
                     && a.Velocity.X > 0
                     && ViewportPosition.X > 0)
                 {
                     ViewportPosition -= new Vector2D_Dbl(leftthresh - CalculateRelativePosition(a).X, 0);
                 }
-                //if the actor is in the left-most 1/3 of our screen.
+                
                 if (CalculateRelativePosition(a).X >= rightthresh
                     && a.Velocity.X < 0
                     && ViewportPosition.X + ViewportWidth < Width)
