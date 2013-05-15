@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using OpenMario.Core.Players.Actions;
 using VectorClass;
+using OpenMario.Core.Actors.Sprites;
 
 namespace OpenMario.Core.Actors.Concrete
 {
@@ -10,20 +11,17 @@ namespace OpenMario.Core.Actors.Concrete
     {
         private BasePlayer _player;
 
-        private Bitmap _drawableright;
-        private Bitmap _drawableleft;
-        private Bitmap _currbitmap;
-
         public bool IsAlive { get; set; }
 
         public Mario(BasePlayer player)
         {
-            Width = 30;
-            Height = 40;
-            Position = new Vector2D_Dbl(200, 0);
+            Width = 22;
+            Height = 26;
+            Position = new Vector2D_Dbl(100, 200);
             _player = player;
             EnvironmentEffect = EnvironmentEffectType.CONTROLS_VIEWPORT_SCROLL;
             IsAlive = true;
+            SpriteManager = new MarioSpriteManager(this, player);
         }
 
         public override void Update(List<BaseActor> loadedactors)
@@ -41,12 +39,10 @@ namespace OpenMario.Core.Actors.Concrete
             //Perform Left/Right Velocity Updates.
             if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
             {
-                _currbitmap = _drawableleft;
                 Velocity += new Vector2D_Dbl(Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
             {
-                _currbitmap = _drawableright;
                 Velocity += new Vector2D_Dbl(-Physics.Physics.MOVEMENT_DELTA, 0);
             }
             else
@@ -65,22 +61,22 @@ namespace OpenMario.Core.Actors.Concrete
 
             //Block all Collisions with 'Block' set.
             Physics.Physics.BlockAllCollisions(this, loadedactors);
+
+            //Update Sprite Manager
+            SpriteManager.Update(loadedactors);
         }
 
         public override void Load(Environment.Environment env)
         {
-            _drawableright = (Bitmap)Image.FromFile(@"Assets\marior.png");
-            _drawableright = new Bitmap(_drawableright, new Size(Width, Height));
-            _drawableleft = (Bitmap)Image.FromFile(@"Assets\mariol.png");
-            _drawableleft = new Bitmap(_drawableleft, new Size(Width, Height));
-            _currbitmap = _drawableright;
             Environment = env;
+            SpriteManager.Load();
         }
 
         public override void Draw(Graphics g)
         {
             var pos = Environment.CalculateRelativePosition(this);
-            g.DrawImage(_currbitmap, (int)pos.X, (int)pos.Y);
+            g.DrawImage(SpriteManager.CurrentSprite, (int)pos.X, (int)pos.Y);
+            g.DrawRectangle(new Pen(Brushes.Blue), new Rectangle((int)pos.X, (int)pos.Y, Width, Height));
         }
     }
 }

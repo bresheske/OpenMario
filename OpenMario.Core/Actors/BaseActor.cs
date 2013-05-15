@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenMario.Core.Actors.Sprites;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace OpenMario.Core.Actors
         public CollisionType CollisionAction { get; protected set; }
         public EnvironmentEffectType EnvironmentEffect { get; set; }
         public Environment.Environment Environment { get; set; }
+        public SpriteManager SpriteManager { get; set; }
 
         protected BaseActor()
         {

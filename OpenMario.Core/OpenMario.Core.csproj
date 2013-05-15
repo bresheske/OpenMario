@@ -57,9 +57,12 @@
     <Compile Include="Actors\Concrete\StaticTransparentBox.cs" />
     <Compile Include="Actors\GravityActor.cs" />
     <Compile Include="Actors\MovementActor.cs" />
+    <Compile Include="Actors\Sprites\MarioSpriteManager.cs" />
+    <Compile Include="Actors\Sprites\SpriteManager.cs" />
     <Compile Include="Engine\Engine.cs" />
     <Compile Include="Engine\FrameEventArgs.cs" />
     <Compile Include="Environment\Environment.cs" />
+    <Compile Include="Extensions\DrawingExtensions.cs" />
     <Compile Include="Physics\Physics.cs" />
     <Compile Include="Players\Actions\KeyEventArgs.cs" />
     <Compile Include="Players\BasePlayer.cs" />
@@ -88,6 +91,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\marior.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\mariosheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\overworldtheme.mp3">
