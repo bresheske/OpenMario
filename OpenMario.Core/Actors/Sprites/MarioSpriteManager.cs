@@ -17,9 +17,9 @@ namespace OpenMario.Core.Actors.Sprites
 
         #region constants
         public const int SMALL_MARIO_WIDTH = 15;
-        public const int SMALL_MARIO_HEIGHT = 31;
+        public const int SMALL_MARIO_HEIGHT = 20;
         public Rectangle SMALL_MARIO_STANDING_LEFT = new Rectangle(168, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
-        public Rectangle SMALL_MARIO_STANDING_RIGHT = new Rectangle(168, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
+        public Rectangle SMALL_MARIO_STANDING_RIGHT = new Rectangle(209, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
         #endregion
 
         public MarioSpriteManager(BaseActor a, Players.BasePlayer p)
@@ -47,7 +47,7 @@ namespace OpenMario.Core.Actors.Sprites
         {
             SpriteHeight = crop.Height;
             SpriteWidth = crop.Width;
-             return new Bitmap(_fullmap.CropImage(crop), _actor.Width, _actor.Height);
+            return new Bitmap(_fullmap.CropImage(crop), _actor.Width, _actor.Height);
         }
 
         public override void Load()

@@ -76,7 +76,7 @@ namespace OpenMario.Core.Actors.Concrete
         {
             var pos = Environment.CalculateRelativePosition(this);
             g.DrawImage(SpriteManager.CurrentSprite, (int)pos.X, (int)pos.Y);
-            g.DrawRectangle(new Pen(Brushes.Blue), new Rectangle((int)pos.X, (int)pos.Y, Width, Height));
+            //g.DrawRectangle(new Pen(Brushes.Blue), new Rectangle((int)pos.X, (int)pos.Y, Width, Height));
         }
     }
 }
