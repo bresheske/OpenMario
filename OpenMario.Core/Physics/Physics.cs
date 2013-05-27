@@ -11,9 +11,9 @@ namespace OpenMario.Core.Physics
     {
         public const double GROUND_FRICTION_DELTA = 1.4d;
         public const double AIR_FRICTION_DELTA = .9d;
-        public const double MAX_MOVEMENT_SPEED = 14d;
+        public const double MAX_MOVEMENT_SPEED = 10d;
         public const double MAX_JUMP_SPEED = 12d;
-        public const double MOVEMENT_DELTA = .5d;
+        public const double MOVEMENT_DELTA = .3d;
 
         public static readonly Vector2D_Dbl GRAVITY = new Vector2D_Dbl(0d, -.6d);
         public static readonly Vector2D_Dbl MAX_GRAVITY = new Vector2D_Dbl(0d, -MAX_MOVEMENT_SPEED);
@@ -60,9 +60,24 @@ namespace OpenMario.Core.Physics
             return Math.Abs(value - other) <= MAX_MOVEMENT_SPEED;
         }
 
-        public static bool IsActorStandingOnAnother(BaseActor a, List<BaseActor> loaded )
+        public static bool IsActorStandingOnAnother(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorStandingOnAnother(a, b));
+        }
+
+        public static bool IsActorPushingAnotherFromLeft(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromLeft(a, b));
+        }
+
+        public static bool IsActorPushingAnotherFromRight(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromRight(a, b));
+        }
+
+        public static bool IsActorPushingAnotherFromBottom(BaseActor a, List<BaseActor> loaded)
+        {
+            return loaded.Any(b => IsActorPushingAnotherFromBottom(a, b));
         }
 
         public static bool IsActorStandingOnAnother(BaseActor a, BaseActor b)

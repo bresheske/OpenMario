@@ -1,4 +1,5 @@
 ﻿using OpenMario.Core.Actors;
+using OpenMario.Core.Actors.Concrete;
 using OpenMario.Core.Players;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace OpenMario.Core.Environment
         public Point StartingPosition { get; set; }
         public List<BasePlayer> Players { get; set; }
         public List<BaseActor> Actors { get; set; }
+        public List<BaseActor> ActorsToRemove { get; set; }
         public Vector2D_Dbl ViewportPosition { get; set; }
         public Vector2D_Dbl ViewportVelocity { get; set; }
 
@@ -29,17 +31,20 @@ namespace OpenMario.Core.Environment
         public int Height { get; set; }
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
+        public bool IsRunning { get; set; }
 
         public Environment()
         {
             Players = new List<BasePlayer>();
             Actors = new List<BaseActor>();
+            ActorsToRemove = new List<BaseActor>();
             Width = Engine.Engine.DEFAULT_WIDTH;
             Height = Engine.Engine.DEFAULT_HEIGHT;
             ViewportWidth = Engine.Engine.DEFAULT_WIDTH;
             ViewportHeight = Engine.Engine.DEFAULT_HEIGHT;
             ViewportPosition = new Vector2D_Dbl(0, 0);
             ViewportVelocity = new Vector2D_Dbl(0, 0);
+            IsRunning = true;
         }
 
         public void RegisterAllKeys(Form f)
@@ -50,9 +55,12 @@ namespace OpenMario.Core.Environment
 
         public void Update()
         {
+            if (!IsRunning)
+                return;
+
+
             foreach (var a in Actors)
                 a.Update(Actors);
-
 
             //The following is for updating the viewport.
 
@@ -62,21 +70,32 @@ namespace OpenMario.Core.Environment
             {
                 //Lets update the viewport if the actor is controlling our scroll.
                 var leftthresh = (double)ViewportWidth * (1d / 3d);
-                var rightthresh = (double)ViewportWidth * (2d / 3d);
-                //if the actor is in the right-most 1/3 of our screen.
+                var rightthresh = (double)ViewportWidth * (1d / 2d);
+                
                 if (CalculateRelativePosition(a).X <= leftthresh
                     && a.Velocity.X > 0
                     && ViewportPosition.X > 0)
                 {
                     ViewportPosition -= new Vector2D_Dbl(leftthresh - CalculateRelativePosition(a).X, 0);
                 }
-                //if the actor is in the left-most 1/3 of our screen.
+                
                 if (CalculateRelativePosition(a).X >= rightthresh
                     && a.Velocity.X < 0
                     && ViewportPosition.X + ViewportWidth < Width)
                 {
                     ViewportPosition += new Vector2D_Dbl(CalculateRelativePosition(a).X - rightthresh, 0);
                 }
+            }
+
+            //Remove Unloaded Actors.
+            foreach (var a in ActorsToRemove)
+                Actors.Remove(a);
+
+            //If all players are dead, move on.
+            //TODO: Support more than just Mario class.
+            if (!Actors.Any(x => x.GetType() == typeof(Mario) && ((Mario)x).IsAlive))
+            {
+                IsRunning = false;
             }
         }
 
