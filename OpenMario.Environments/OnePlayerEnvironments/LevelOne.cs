@@ -1,10 +1,5 @@
 ﻿using OpenMario.Core.Actors.Concrete;
 using OpenMario.Core.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VectorClass;
 
 namespace OpenMario.Environments.OnePlayerEnvironments
