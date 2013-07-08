@@ -37,11 +37,8 @@ namespace OpenMario
                 DrawDebug(g);
                 g.Flush();
             }
-            
-            this.Invoke((Action)(() =>
-            {
-                canvas.Image = e.Frame;
-            }));
+
+            canvas.Image = e.Frame;
         }
 
         public void DrawDebug(Graphics g)
