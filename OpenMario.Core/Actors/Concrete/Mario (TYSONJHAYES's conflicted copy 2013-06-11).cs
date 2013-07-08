@@ -17,15 +17,8 @@ namespace OpenMario.Core.Actors.Concrete
 
     public class Mario : GravityActor
     {
-        /// <summary>
-        /// Creates the player BasePlayer object.
-        /// </summary>
         private BasePlayer _player;
 
-        /// <summary>
-        /// Gets or Sets the IsAlive state of the Mario object.
-        /// TODO: Shouldn't this be available to all actors? ie: moved to baseactor?
-        /// </summary>
         public bool IsAlive { get; set; }
 
         public Mario(BasePlayer player)
@@ -45,14 +38,14 @@ namespace OpenMario.Core.Actors.Concrete
             base.Update(loadedactors);
 
             // Perform Jumps
-            if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.JUMP }))
+            if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.JUMP }))
             {
                 if (Physics.Physics.IsActorStandingOnAnother(this, loadedactors))
                     Velocity += new Vector2D_Dbl(0, Physics.Physics.MAX_JUMP_SPEED);
             }
 
             // Perform Left/Right Velocity Updates.
-            if (_player.IsActionPressed(new KeyMapping(){ Action = KeyMapping.KeyAction.LEFT }))
+            if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.LEFT }))
             {
                 Velocity += new Vector2D_Dbl(Physics.Physics.MOVEMENT_DELTA, 0);
             }

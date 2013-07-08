@@ -1,19 +1,34 @@
-﻿using OpenMario.Core.Actors.Concrete;
-using OpenMario.Core.Engine;
-using OpenMario.Core.Players;
-using OpenMario.Environments.OnePlayerEnvironments;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using VectorClass;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainForm.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> The main form for interacting with OpenMario. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario
 {
+    using OpenMario.Core.Actors.Concrete;
+    using OpenMario.Core.Engine;
+    using OpenMario.Core.Players;
+    using OpenMario.Environments.OnePlayerEnvironments;
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using VectorClass;
+
+    /// <summary>
+    /// The mian window for interacting with OpenMario.
+    /// </summary>
     public partial class MainForm : Form
     {
         Engine _engine;
+
         Core.Environment.Environment _environment;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -37,11 +52,10 @@ namespace OpenMario
                 DrawDebug(g);
                 g.Flush();
             }
-            
-            this.Invoke((Action)(() =>
-            {
-                canvas.Image = e.Frame;
-            }));
+                this.Invoke((Action)(() =>
+               {
+                   canvas.Image = e.Frame;
+               }));
         }
 
         public void DrawDebug(Graphics g)

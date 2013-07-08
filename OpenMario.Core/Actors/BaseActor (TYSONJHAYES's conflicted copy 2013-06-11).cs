@@ -14,7 +14,7 @@ namespace OpenMario.Core.Actors
     using VectorClass;
 
     /// <summary>
-    /// This class covers the various actors that will exist in OpenMario.
+    /// This class covers the base methods for interacting with actors that will exist in OpenMario.
     /// </summary>
     public abstract class BaseActor
     {
@@ -30,7 +30,7 @@ namespace OpenMario.Core.Actors
         }
 
         /// <summary>
-        /// Covers the various types of collisions an actor can have.
+        /// Enum covering the various types of collisions an actor can have.
         /// </summary>
         public enum CollisionType
         {
@@ -115,7 +115,7 @@ namespace OpenMario.Core.Actors
         /// <summary>
         /// Defines the base method for Update.
         /// </summary>
-        /// <param name="loadedactors">List BaseActor</param>
+        /// <param name="loadedactors"><c>List<c>BaseActor</c></c></param>
         public abstract void Update(List<BaseActor> loadedactors);
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace OpenMario.Core.Actors
         /// <summary>
         /// Defines the base method of drawing the graphics.
         /// </summary>
-        /// <param name="g"><c>System.Drawing.Graphics</c></param>
+        /// <param name="g"><see cref="Graphics"/></param>
         public abstract void Draw(Graphics g);
     }
 }

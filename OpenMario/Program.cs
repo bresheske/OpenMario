@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> The main entry point for OpenMario. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario
 {
+    using System;
+    using System.Windows.Forms;
+
     static class Program
     {
         /// <summary>

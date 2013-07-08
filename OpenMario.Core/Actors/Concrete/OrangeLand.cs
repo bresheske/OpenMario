@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="OrangeLand.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Defines the "dirt" that Mario is walking on. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario.Core.Actors.Concrete
 {
+    using System.Drawing;
+
     public class OrangeLand : StaticBox
     {
         private Bitmap _drawable;

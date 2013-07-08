@@ -1,15 +1,19 @@
-﻿using OpenMario.Core.Players;
-using OpenMario.Core.Players.Actions;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenMario.Core.Extensions;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MarioSpriteManager.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Contains the logic for managing Mario's sprites. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario.Core.Actors.Sprites
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+    using OpenMario.Core.Extensions;
+    using OpenMario.Core.Players;
+    using OpenMario.Core.Players.Actions;
+
     public class MarioSpriteManager : SpriteManager
     {
         private Bitmap _fullmap;
@@ -23,7 +27,7 @@ namespace OpenMario.Core.Actors.Sprites
         #endregion
 
         public MarioSpriteManager(BaseActor a, Players.BasePlayer p)
-            :base(a)
+            : base(a)
         {
             _player = p;
         }

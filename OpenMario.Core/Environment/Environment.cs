@@ -1,22 +1,27 @@
-﻿using OpenMario.Core.Actors;
-using OpenMario.Core.Actors.Concrete;
-using OpenMario.Core.Players;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using VectorClass;
-using WMPLib;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Environment.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Where the base environment is created. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario.Core.Environment
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Windows.Forms;
+    using OpenMario.Core.Actors;
+    using OpenMario.Core.Actors.Concrete;
+    using OpenMario.Core.Players;
+    using VectorClass;
+    using WMPLib;
+
     public abstract class Environment : IDisposable
     {
-        //TODO - StartPos not used yet.
+        // TODO - StartPos not used yet.
         public Point StartingPosition { get; set; }
         public List<BasePlayer> Players { get; set; }
         public List<BaseActor> Actors { get; set; }
@@ -58,17 +63,16 @@ namespace OpenMario.Core.Environment
             if (!IsRunning)
                 return;
 
-
             foreach (var a in Actors)
                 a.Update(Actors);
 
-            //The following is for updating the viewport.
+            // The following is for updating the viewport.
 
             var scrollingactors = Actors.Where(x => x.EnvironmentEffect == BaseActor.EnvironmentEffectType.SCROLLS_WITH_VIEWPORT);
 
             foreach (var a in Actors.Where(x => x.EnvironmentEffect == BaseActor.EnvironmentEffectType.CONTROLS_VIEWPORT_SCROLL))
             {
-                //Lets update the viewport if the actor is controlling our scroll.
+                // Lets update the viewport if the actor is controlling our scroll.
                 var leftthresh = (double)ViewportWidth * (1d / 3d);
                 var rightthresh = (double)ViewportWidth * (1d / 2d);
                 
@@ -87,12 +91,12 @@ namespace OpenMario.Core.Environment
                 }
             }
 
-            //Remove Unloaded Actors.
+            // Remove Unloaded Actors.
             foreach (var a in ActorsToRemove)
                 Actors.Remove(a);
 
-            //If all players are dead, move on.
-            //TODO: Support more than just Mario class.
+            // If all players are dead, move on.
+            // TODO: Support more than just Mario class.
             if (!Actors.Any(x => x.GetType() == typeof(Mario) && ((Mario)x).IsAlive))
             {
                 IsRunning = false;
@@ -112,11 +116,11 @@ namespace OpenMario.Core.Environment
 
         public void Load()
         {
-            //TODO: Don't just load all, load in what is in the viewport.
+            // TODO: Don't just load all, load in what is in the viewport.
             foreach (var a in Actors)
                 a.Load(this);
 
-            //Music
+            // Music
             if (!string.IsNullOrWhiteSpace(MusicAsset))
             {
                 MusicPlayer = new WMPLib.WindowsMediaPlayer();

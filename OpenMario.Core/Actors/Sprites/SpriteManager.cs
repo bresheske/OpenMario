@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="SpriteManager.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Contains the base methods for the Sprite Manager class. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario.Core.Actors.Sprites
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+
     public abstract class SpriteManager
     {
         protected readonly BaseActor _actor;

@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Goomba.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Contains all of the logic for interacting and managing the Goomba actor. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
 
 namespace OpenMario.Core.Actors.Concrete
 {
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+
     public class Goomba : GravityActor
     {
         public Bitmap _drawableleft;
@@ -43,13 +47,13 @@ namespace OpenMario.Core.Actors.Concrete
 
         public override void Update(List<BaseActor> loadedactors)
         {
-            //Gravity.
+            // Gravity.
             base.Update(loadedactors);
 
-            //Drawable
+            // Drawable
             if (_timer.ElapsedMilliseconds > 500)
             {
-                //Swap drawables.
+                // Swap drawables.
                 if (_drawablecurrent == _drawableleft)
                     _drawablecurrent = _drawableright;
                 else
@@ -58,10 +62,10 @@ namespace OpenMario.Core.Actors.Concrete
                 _timer.Start();
             }
 
-            //Walk
+            // Walk
             Position += WalkingVelocity;
 
-            //If bump into Left or Right, Turn around.
+            // If bump into Left or Right, Turn around.
             if (Physics.Physics.IsActorPushingAnotherFromLeft(this, loadedactors)
                 || Physics.Physics.IsActorPushingAnotherFromRight(this, loadedactors))
             {
@@ -69,14 +73,14 @@ namespace OpenMario.Core.Actors.Concrete
                 WalkingVelocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, WalkingVelocity.Y);
             }
 
-            //If we got stomped on, we'll need to die.
+            // If we got stomped on, we'll need to die.
             if (Physics.Physics.IsActorPushingAnotherFromBottom(this, loadedactors))
             {
-                //Queue the removal. 
+                // Queue the removal. 
                 Environment.ActorsToRemove.Add(this);
             }
 
-            //Normalize Velocities to only allow maximum speeds.
+            // Normalize Velocities to only allow maximum speeds.
             Physics.Physics.NormalizeVelocity(this);
 
             Physics.Physics.BlockAllCollisions(this, loadedactors);
