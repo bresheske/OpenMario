@@ -15,9 +15,13 @@ namespace OpenMario.Core.Actors.Concrete
     public class Goomba : GravityActor
     {
         public Bitmap _drawableleft;
+
         public Bitmap _drawableright;
+
         public Bitmap _drawablecurrent;
+
         public Stopwatch _timer;
+
         public VectorClass.Vector2D_Dbl WalkingVelocity;
 
         public Goomba() 
@@ -36,13 +40,13 @@ namespace OpenMario.Core.Actors.Concrete
         public override void Load(Environment.Environment env)
         {
             Environment = env;
-            _drawableright = (Bitmap)Image.FromFile(@"Assets\goombar.png");
-            _drawableright = new Bitmap(_drawableright, new Size(Width, Height));
-            _drawableleft = (Bitmap)Image.FromFile(@"Assets\goombal.png");
-            _drawableleft = new Bitmap(_drawableleft, new Size(Width, Height));
-            _drawablecurrent = _drawableright;
-            _timer = new Stopwatch();
-            _timer.Start();
+            this._drawableright = (Bitmap)Image.FromFile(@"Assets\goombar.png");
+            this._drawableright = new Bitmap(this._drawableright, new Size(Width, Height));
+            this._drawableleft = (Bitmap)Image.FromFile(@"Assets\goombal.png");
+            this._drawableleft = new Bitmap(this._drawableleft, new Size(Width, Height));
+            this._drawablecurrent = this._drawableright;
+            this._timer = new Stopwatch();
+            this._timer.Start();
         }
 
         public override void Update(List<BaseActor> loadedactors)
@@ -55,22 +59,27 @@ namespace OpenMario.Core.Actors.Concrete
             {
                 // Swap drawables.
                 if (_drawablecurrent == _drawableleft)
+                {
                     _drawablecurrent = _drawableright;
+                }
                 else
+                {
                     _drawablecurrent = _drawableleft;
+                }
+
                 _timer.Reset();
                 _timer.Start();
             }
 
             // Walk
-            Position += WalkingVelocity;
+            this.Position += WalkingVelocity;
 
             // If bump into Left or Right, Turn around.
             if (Physics.Physics.IsActorPushingAnotherFromLeft(this, loadedactors)
                 || Physics.Physics.IsActorPushingAnotherFromRight(this, loadedactors))
             {
-                Velocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, Velocity.Y);
-                WalkingVelocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, WalkingVelocity.Y);
+                this.Velocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, Velocity.Y);
+                this.WalkingVelocity = new VectorClass.Vector2D_Dbl(WalkingVelocity.X * -1, WalkingVelocity.Y);
             }
 
             // If we got stomped on, we'll need to die.
