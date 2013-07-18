@@ -9,45 +9,54 @@
 namespace OpenMario.Core.Actors
 {
     using System.Collections.Generic;
+    using System.Drawing;
 
     /// <summary>
-    /// Base class for gravity in regards to the actors.
+    ///     Base class for gravity in regards to the actors.
     /// </summary>
     public abstract class GravityActor : MovementActor
     {
         /// <summary>
-        /// Override of the of <see cref="BaseActor"/> Load method.
+        ///     Override of the of <see cref="BaseActor" /> Load method.
         /// </summary>
-        /// <param name="env"><see cref="Environment"/></param>
+        /// <param name="env">
+        ///     <see cref="Environment" />
+        /// </param>
         public abstract override void Load(Environment.Environment env);
 
         /// <summary>
-        /// Override of the <see cref="BaseActor"/> Draw method.
+        ///     Override of the <see cref="BaseActor" /> Draw method.
         /// </summary>
-        /// <param name="g"><c><System.Drawing.Graphics</c></param>
-        public abstract override void Draw(System.Drawing.Graphics g);
+        /// <param name="g">System.Drawing.Graphics</param>
+        public abstract override void Draw(Graphics g);
 
         /// <summary>
-        /// Override of the <see cref="BaseActor"/> Move method.
-        /// Method is manipulated by controlling the gravity on the Actor's Y plane.
+        ///     Override of the <see cref="BaseActor" /> Move method.
+        ///     Method is manipulated by controlling the gravity on the Actor's Y plane.
         /// </summary>
         public override void Move()
         {
             if (Velocity.Y < Physics.Physics.MAX_GRAVITY.Y)
+            {
                 this.Velocity -= Physics.Physics.GRAVITY;
+            }
             else if (Velocity.Y > Physics.Physics.MAX_GRAVITY.Y)
+            {
                 this.Velocity += Physics.Physics.GRAVITY;
+            }
 
-            Position -= Velocity;
+            this.Position -= this.Velocity;
         }
 
         /// <summary>
-        /// Override of the <see cref="BaseActor"/> Update method
+        ///     Override of the <see cref="BaseActor" /> Update method
         /// </summary>
-        /// <param name="loadedactors">List of <c>BaseActor</c></param>
+        /// <param name="loadedactors">
+        ///     List of <c>BaseActor</c>
+        /// </param>
         public override void Update(List<BaseActor> loadedactors)
         {
-            Move();
+            this.Move();
         }
     }
 }

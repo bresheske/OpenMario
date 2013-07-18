@@ -17,6 +17,7 @@ namespace OpenMario.Core.Actors.Sprites
     public class MarioSpriteManager : SpriteManager
     {
         private Bitmap _fullmap;
+
         private BasePlayer _player;
 
         #region constants
@@ -26,8 +27,7 @@ namespace OpenMario.Core.Actors.Sprites
         public Rectangle SMALL_MARIO_STANDING_RIGHT = new Rectangle(209, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
         #endregion
 
-        public MarioSpriteManager(BaseActor a, Players.BasePlayer p)
-            : base(a)
+        public MarioSpriteManager(BaseActor a, Players.BasePlayer p) : base(a)
         {
             _player = p;
         }

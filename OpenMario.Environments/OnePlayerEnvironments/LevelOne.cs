@@ -32,8 +32,8 @@ namespace OpenMario.Environments.OnePlayerEnvironments
             Actors.Add(new Cloud());
 
             // Actors
-            Actors.Add(new OrangeLand()
-            {
+            Actors.Add(new OrangeLand
+                {
                 Position = new Vector2D_Dbl(0, 400),
                 Width = 1500,
                 Height = 10

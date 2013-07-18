@@ -71,7 +71,7 @@ namespace OpenMario.Core.Engine
             }
 
             this.IsRunning = true;
-            this.RunningThread = new Thread(new ThreadStart(() => this.ThreadRun()));
+            this.RunningThread = new Thread(this.ThreadRun);
             this.RunningThread.Start();
         }
 
@@ -139,12 +139,13 @@ namespace OpenMario.Core.Engine
                 framecounter.Stop();
 
                 /* Calculate current FPS. */
-                if (framecounter.ElapsedMilliseconds >= 1000)
+                if (framecounter.ElapsedMilliseconds < 1000)
                 {
-                    this.CurrentFPS = (float)count / (framecounter.ElapsedMilliseconds / 1000f);
-                    framecounter.Reset();
-                    count = 0;
+                    continue;
                 }
+                this.CurrentFPS = (float)count / (framecounter.ElapsedMilliseconds / 1000f);
+                framecounter.Reset();
+                count = 0;
             }
         }
     }

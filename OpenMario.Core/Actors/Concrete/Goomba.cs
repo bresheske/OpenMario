@@ -58,14 +58,7 @@ namespace OpenMario.Core.Actors.Concrete
             if (_timer.ElapsedMilliseconds > 500)
             {
                 // Swap drawables.
-                if (_drawablecurrent == _drawableleft)
-                {
-                    _drawablecurrent = _drawableright;
-                }
-                else
-                {
-                    _drawablecurrent = _drawableleft;
-                }
+                _drawablecurrent = _drawablecurrent == _drawableleft ? _drawableright : _drawableleft;
 
                 _timer.Reset();
                 _timer.Start();

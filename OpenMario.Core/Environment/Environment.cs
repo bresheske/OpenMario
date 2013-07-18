@@ -121,12 +121,13 @@ namespace OpenMario.Core.Environment
                 a.Load(this);
 
             // Music
-            if (!string.IsNullOrWhiteSpace(MusicAsset))
+            if (string.IsNullOrWhiteSpace(MusicAsset))
             {
-                MusicPlayer = new WMPLib.WindowsMediaPlayer();
-                MusicPlayer.URL = MusicAsset;
-                MusicPlayer.controls.play();
+                return;
             }
+
+            MusicPlayer = new WMPLib.WindowsMediaPlayer {URL = MusicAsset};
+            MusicPlayer.controls.play();
         }
 
         public void Dispose()
