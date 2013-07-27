@@ -62,10 +62,7 @@ namespace OpenMario
                 g.Flush();
             }
 
-                this.Invoke((Action)(() =>
-               {
-                   canvas.Image = e.Frame;
-               }));
+            canvas.Image = e.Frame;
         }
 
         /// <summary>
