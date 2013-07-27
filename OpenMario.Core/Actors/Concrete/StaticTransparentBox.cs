@@ -14,13 +14,13 @@ namespace OpenMario.Core.Actors.Concrete
     public class StaticTransparentBox : StaticBox
     {
         /// <summary>
-        /// Intializes a new instance of the <see cref="StaticTransparentBox"/> class
+        /// Initializes a new instance of the <see cref="StaticTransparentBox"/> class. 
         /// This sets the StaticTransparentBox to <c>collisiontype.noaction</c>;
         /// </summary>
         public StaticTransparentBox()
         {
             // Not collidable.
-            this.CollisionAction = CollisionType.NO_ACTION;
+            this.CollisionAction = CollisionType.NoAction;
         }
     }
 }

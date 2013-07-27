@@ -9,54 +9,100 @@
 namespace OpenMario.Core.Actors.Sprites
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using OpenMario.Core.Extensions;
     using OpenMario.Core.Players;
     using OpenMario.Core.Players.Actions;
 
+    /// <summary>
+    /// The mario sprite manager.
+    /// </summary>
     public class MarioSpriteManager : SpriteManager
     {
-        private Bitmap _fullmap;
+        #region Constants
+        /// <summary>
+        /// The small mario width.
+        /// </summary>
+        public const int SmallMarioWidth = 15;
 
-        private BasePlayer _player;
+        /// <summary>
+        /// The small mario height.
+        /// </summary>
+        public const int SmallMarioHeight = 20;
 
-        #region constants
-        public const int SMALL_MARIO_WIDTH = 15;
-        public const int SMALL_MARIO_HEIGHT = 20;
-        public Rectangle SMALL_MARIO_STANDING_LEFT = new Rectangle(168, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
-        public Rectangle SMALL_MARIO_STANDING_RIGHT = new Rectangle(209, 0, SMALL_MARIO_WIDTH, SMALL_MARIO_HEIGHT);
+        /// <summary>
+        /// The small mario standing left.
+        /// </summary>
+        private readonly Rectangle smallMarioStandingLeft = new Rectangle(168, 0, SmallMarioWidth, SmallMarioHeight);
+
+        /// <summary>
+        /// The small mario standing right.
+        /// </summary>
+        private readonly Rectangle smallMarioStandingRight = new Rectangle(209, 0, SmallMarioWidth, SmallMarioHeight);
+
+        /// <summary>
+        /// The player.
+        /// </summary>
+        private readonly BasePlayer player;
         #endregion
 
+        /// <summary>
+        /// The fullmap.
+        /// </summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+        private Bitmap fullmap;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MarioSpriteManager"/> class.
+        /// </summary>
+        /// <param name="a">The Base Actor.</param>
+        /// <param name="p">The Base Player.</param>
         public MarioSpriteManager(BaseActor a, Players.BasePlayer p) : base(a)
         {
-            _player = p;
+            this.player = p;
         }
 
-        public override void Update(List<BaseActor> loadedactors)
-        {
-            if (CurrentSprite == null)
-                CurrentSprite = new Bitmap(_fullmap.CropImage(SMALL_MARIO_STANDING_LEFT), _actor.Width, _actor.Height);
-
-            if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.LEFT }))
-            {
-                CurrentSprite = GetCrop(SMALL_MARIO_STANDING_LEFT);
-            }
-            else if (_player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
-            {
-                CurrentSprite = GetCrop(SMALL_MARIO_STANDING_RIGHT);
-            }
-        }
-
-        private Bitmap GetCrop(Rectangle crop)
-        {
-            SpriteHeight = crop.Height;
-            SpriteWidth = crop.Width;
-            return new Bitmap(_fullmap.CropImage(crop), _actor.Width, _actor.Height);
-        }
-
+        /// <summary>
+        /// The load method for Mario Sprite Manager.
+        /// </summary>
         public override void Load()
         {
-            _fullmap = (Bitmap)Image.FromFile(@"Assets\mariosheet.png");
+            this.fullmap = (Bitmap)Image.FromFile(@"Assets\mariosheet.png");
+        }
+
+        /// <summary>
+        /// The update method for Mario Sprite Manager
+        /// </summary>
+        /// <param name="loadedactors"> The loadedactors.  </param>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+        public override void Update(List<BaseActor> loadedactors)
+        {
+            if (this.CurrentSprite == null)
+            {
+                this.CurrentSprite = new Bitmap(this.fullmap.CropImage(this.smallMarioStandingLeft), this.Actor.Width, this.Actor.Height);   
+            }
+
+            if (this.player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.LEFT }))
+            {
+                this.CurrentSprite = this.GetCrop(this.smallMarioStandingLeft);
+            }
+            else if (this.player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
+            {
+                this.CurrentSprite = this.GetCrop(this.smallMarioStandingRight);
+            }
+        }
+
+        /// <summary>
+        /// The get crop method used to crop the image to around the actor.
+        /// </summary>
+        /// <param name="crop">The <see cref="Rectangle"/> to be cropped. </param>
+        /// <returns> The <see cref="Bitmap"/> cropped. </returns>
+        private Bitmap GetCrop(Rectangle crop)
+        {
+            this.SpriteHeight = crop.Height;
+            this.SpriteWidth = crop.Width;
+            return new Bitmap(this.fullmap.CropImage(crop), this.Actor.Width, this.Actor.Height);
         }
     }
 }

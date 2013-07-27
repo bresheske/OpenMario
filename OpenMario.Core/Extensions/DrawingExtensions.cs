@@ -10,12 +10,27 @@ namespace OpenMario.Core.Extensions
 {
     using System.Drawing;
 
+    /// <summary>
+    /// The drawing extensions.
+    /// </summary>
     public static class DrawingExtensions
     {
+        /// <summary>
+        /// The crop image method.
+        /// </summary>
+        /// <param name="img">
+        /// The <see cref="Image"/> to crop.
+        /// </param>
+        /// <param name="cropArea">
+        /// The <see cref="Rectangle "/> crop area.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Bitmap"/> to crop.
+        /// </returns>
         public static Bitmap CropImage(this Image img, Rectangle cropArea)
         {
-            Bitmap bmpImage = new Bitmap(img);
-            Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
+            var bmpImage = new Bitmap(img);
+            var bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
             return bmpCrop;
         }
     }

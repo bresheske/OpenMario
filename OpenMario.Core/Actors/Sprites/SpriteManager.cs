@@ -9,22 +9,55 @@
 namespace OpenMario.Core.Actors.Sprites
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
 
+    /// <summary>
+    /// The sprite manager.
+    /// </summary>
     public abstract class SpriteManager
     {
-        protected readonly BaseActor _actor;
+        /// <summary>
+        /// The actor in which this sprite is currently dealing with.
+        /// </summary>
+        protected readonly BaseActor Actor;
 
-        public SpriteManager(BaseActor a)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SpriteManager"/> class.
+        /// </summary>
+        /// <param name="a">
+        /// The Base Actor
+        /// </param>
+        protected SpriteManager(BaseActor a)
         {
-            _actor = a;
+            this.Actor = a;
         }
 
+        /// <summary>
+        /// Gets or sets the current sprite.
+        /// </summary>
         public Bitmap CurrentSprite { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the sprite width.
+        /// </summary>
         public int SpriteWidth { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the sprite height.
+        /// </summary>
         public int SpriteHeight { get; protected set; }
 
+        /// <summary>
+        /// The load method for the Sprite Manager.
+        /// </summary>
         public abstract void Load();
+
+        /// <summary>
+        /// The update method for the Sprite Manager.
+        /// </summary>
+        /// <param name="loadedactors"> The loadedactors. </param>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public abstract void Update(List<BaseActor> loadedactors);
     }
 }

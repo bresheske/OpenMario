@@ -23,7 +23,7 @@ namespace OpenMario.Core.Actors.Concrete
         /// <summary>
         /// Creates the player BasePlayer object.
         /// </summary>
-        private BasePlayer _player;
+        private readonly BasePlayer player;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Mario"/> class.
@@ -34,8 +34,8 @@ namespace OpenMario.Core.Actors.Concrete
             this.Width = 22;
             this.Height = 26;
             this.Position = new Vector2D_Dbl(100, 200);
-            this._player = player;
-            this.EnvironmentEffect = EnvironmentEffectType.CONTROLS_VIEWPORT_SCROLL;
+            this.player = player;
+            this.EnvironmentEffect = EnvironmentEffectType.ControlsViewportScroll;
             this.IsAlive = true;
             this.SpriteManager = new MarioSpriteManager(this, player);
         }
@@ -57,22 +57,22 @@ namespace OpenMario.Core.Actors.Concrete
             base.Update(loadedactors);
 
             // Perform Jumps
-            if (this._player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.JUMP }))
+            if (this.player.IsActionPressed(new KeyMapping { Action = KeyMapping.KeyAction.JUMP }))
             {
                 if (Physics.Physics.IsActorStandingOnAnother(this, loadedactors))
                 {
-                    this.Velocity += new Vector2D_Dbl(0, Physics.Physics.MAX_JUMP_SPEED);
+                    this.Velocity += new Vector2D_Dbl(0, Physics.Physics.MaxJumpSpeed);
                 }
             }
 
             // Perform Left/Right Velocity Updates.
-            if (this._player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.LEFT }))
+            if (this.player.IsActionPressed(new KeyMapping { Action = KeyMapping.KeyAction.LEFT }))
             {
-                this.Velocity += new Vector2D_Dbl(Physics.Physics.MOVEMENT_DELTA, 0);
+                this.Velocity += new Vector2D_Dbl(Physics.Physics.MovementDelta, 0);
             }
-            else if (this._player.IsActionPressed(new KeyMapping() { Action = KeyMapping.KeyAction.RIGHT }))
+            else if (this.player.IsActionPressed(new KeyMapping { Action = KeyMapping.KeyAction.RIGHT }))
             {
-                this.Velocity += new Vector2D_Dbl(-Physics.Physics.MOVEMENT_DELTA, 0);
+                this.Velocity += new Vector2D_Dbl(-Physics.Physics.MovementDelta, 0);
             }
             else
             {

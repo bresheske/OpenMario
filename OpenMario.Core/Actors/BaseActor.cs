@@ -10,7 +10,7 @@ namespace OpenMario.Core.Actors
 {
     using System.Collections.Generic;
     using System.Drawing;
-    using OpenMario.Core.Actors.Sprites;
+    using Sprites;
     using VectorClass;
 
     /// <summary>
@@ -25,8 +25,8 @@ namespace OpenMario.Core.Actors
         {
             this.Position = new Vector2D_Dbl(0, 0);
             this.Velocity = new Vector2D_Dbl(0, 0);
-            this.CollisionAction = CollisionType.NO_ACTION;
-            this.EnvironmentEffect = EnvironmentEffectType.SCROLLS_WITH_VIEWPORT;
+            this.CollisionAction = CollisionType.NoAction;
+            this.EnvironmentEffect = EnvironmentEffectType.ScrollsWithViewport;
         }
 
         /// <summary>
@@ -37,12 +37,12 @@ namespace OpenMario.Core.Actors
             /// <summary>
             /// TODO: Figure out what this is doing?
             /// </summary>
-            BLOCK,
+            Block,
 
             /// <summary>
             /// Nothing happens when this object has a collision.
             /// </summary>
-            NO_ACTION
+            NoAction
         }
 
         /// <summary>
@@ -53,23 +53,23 @@ namespace OpenMario.Core.Actors
             /// <summary>
             /// No Effect with the Environment
             /// </summary>
-            NO_EFFECT,
+            NoEffect,
 
             /// <summary>
             /// Fixed position, does not move when the viewport moves.
             /// </summary>
-            FIXED_POSITION,
+            FixedPosition,
 
             /// <summary>
             /// Moves when the viewport moves, generally when a player moves left or right.
             /// This is the default.
             /// </summary>
-            SCROLLS_WITH_VIEWPORT,
+            ScrollsWithViewport,
 
             /// <summary>
             /// Actor actually controls the viewport. Probably only the 'mario' class.
             /// </summary>
-            CONTROLS_VIEWPORT_SCROLL
+            ControlsViewportScroll
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace OpenMario.Core.Actors
         public abstract void Update(List<BaseActor> loadedactors);
 
         /// <summary>
-        /// Defines the base method for loading the environment.
+        /// The load method for <see cref="BaseActor"/>
         /// </summary>
-        /// <param name="env">Environment</param>
+        /// <param name="env">The <see cref="Environment"/> to load for <see cref="BaseActor"/></param>
         public abstract void Load(Environment.Environment env);
 
         /// <summary>

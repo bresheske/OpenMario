@@ -20,14 +20,16 @@ namespace OpenMario.Core.Actors
         ///     Override of the of <see cref="BaseActor" /> Load method.
         /// </summary>
         /// <param name="env">
-        ///     <see cref="Environment" />
+        ///     The <see cref="Environment" /> for the <see cref="GravityActor"/>
         /// </param>
         public abstract override void Load(Environment.Environment env);
 
         /// <summary>
         ///     Override of the <see cref="BaseActor" /> Draw method.
         /// </summary>
-        /// <param name="g">System.Drawing.Graphics</param>
+        /// <param name="g">
+        ///     The <see cref="Graphics"/> for <see cref="GravityActor"/> to draw.
+        /// </param>
         public abstract override void Draw(Graphics g);
 
         /// <summary>
@@ -36,13 +38,13 @@ namespace OpenMario.Core.Actors
         /// </summary>
         public override void Move()
         {
-            if (Velocity.Y < Physics.Physics.MAX_GRAVITY.Y)
+            if (Velocity.Y < Physics.Physics.MaxGravity.Y)
             {
-                this.Velocity -= Physics.Physics.GRAVITY;
+                this.Velocity -= Physics.Physics.Gravity;
             }
-            else if (Velocity.Y > Physics.Physics.MAX_GRAVITY.Y)
+            else if (Velocity.Y > Physics.Physics.MaxGravity.Y)
             {
-                this.Velocity += Physics.Physics.GRAVITY;
+                this.Velocity += Physics.Physics.Gravity;
             }
 
             this.Position -= this.Velocity;

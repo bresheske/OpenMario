@@ -6,15 +6,17 @@
 // <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
 //-----------------------------------------------------------------------
 
-
 namespace OpenMario.Core.Actors
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The movement actor.
+    /// </summary>
     public abstract class MovementActor : BaseActor
     {
         /// <summary>
-        /// Abastraction of the <see cref="BaseActor"/> Move method.
+        /// Abstraction of the <see cref="BaseActor"/> Move method.
         /// </summary>
         public abstract void Move();
 
@@ -36,7 +38,7 @@ namespace OpenMario.Core.Actors
         /// <param name="loadedactors"><c>List(BaseActor)</c></param>
         public override void Update(List<BaseActor> loadedactors)
         {
-            Move();
+            this.Move();
         }
     }
 }

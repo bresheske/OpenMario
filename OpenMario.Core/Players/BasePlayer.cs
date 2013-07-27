@@ -22,12 +22,12 @@ namespace OpenMario.Core.Players
         /// <summary>
         /// List of <see cref="KeyMapping"/>
         /// </summary>
-        protected List<KeyMapping> currentKeys;
+        private readonly List<KeyMapping> currentKeys;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasePlayer"/> class.
         /// </summary>
-        public BasePlayer()
+        protected BasePlayer()
         {
             this.currentKeys = new List<KeyMapping>();
         }
@@ -35,12 +35,12 @@ namespace OpenMario.Core.Players
         /// <summary>
         /// Event handling for the KeyUp button press.
         /// </summary>
-        public event EventHandler<OpenMario.Core.Players.Actions.KeyEventArgs> OnKeyUp;
+        public event EventHandler<Actions.KeyEventArgs> OnKeyUp;
 
         /// <summary>
         /// Event handling for the KeyDown button press.
         /// </summary>
-        public event EventHandler<OpenMario.Core.Players.Actions.KeyEventArgs> OnKeyDown;
+        public event EventHandler<Actions.KeyEventArgs> OnKeyDown;
 
         /// <summary>
         /// Declares the abstract method for getting key mappings.
@@ -51,9 +51,9 @@ namespace OpenMario.Core.Players
         /// <summary>
         /// Method for determining if the current key contains an action.
         /// </summary>
-        /// <param name="action"><see cref="KeyMapping"/></param>
-        /// <returns>bool - if key is pressed true</returns>
-        public bool IsActionPressed(Core.Players.Actions.KeyMapping action)
+        /// <param name="action"> The <see cref="KeyMapping"/> action pressed</param>
+        /// <returns>The <see cref="bool"/></returns>
+        public bool IsActionPressed(KeyMapping action)
         {
             return this.currentKeys.Contains(action);
         }
@@ -74,19 +74,19 @@ namespace OpenMario.Core.Players
                         this.currentKeys.Add(m);
                         if (OnKeyDown != null)
                         {
-                            OnKeyDown(this, new Actions.KeyEventArgs() { KeyMapping = m });
+                            OnKeyDown(this, new Actions.KeyEventArgs { KeyMapping = m });
                         }
                     }
                 };
             form.KeyUp += (o, e) =>
             {
                 var m = mappings.FirstOrDefault(x => x.Key == e.KeyCode && x.PressType == KeyMapping.KeyPressType.UP);
-                if (m != null && currentKeys.Contains(m))
+                if (m != null && this.currentKeys.Contains(m))
                 {
-                    currentKeys.Remove(m);
+                    this.currentKeys.Remove(m);
                     if (OnKeyUp != null)
                     {
-                        OnKeyUp(this, new Actions.KeyEventArgs() { KeyMapping = m });
+                        OnKeyUp(this, new Actions.KeyEventArgs { KeyMapping = m });
                     }
                 }
             };

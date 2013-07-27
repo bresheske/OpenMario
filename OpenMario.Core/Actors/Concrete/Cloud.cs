@@ -8,6 +8,7 @@
 
 namespace OpenMario.Core.Actors.Concrete
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
 
     /// <summary>
@@ -16,9 +17,10 @@ namespace OpenMario.Core.Actors.Concrete
     public class Cloud : StaticTransparentBox
     {
         /// <summary>
-        /// Initializes the _drawable variable to the System.Drawing.Bitmap allowing us to draw on it later in the class.
+        /// Initializes the drawable variable to the System.Drawing.Bitmap allowing us to draw on it later in the class.
         /// </summary>
-        private Bitmap _drawable;
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+        private Bitmap drawable;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cloud"/> class.
@@ -37,23 +39,23 @@ namespace OpenMario.Core.Actors.Concrete
             this.Width = env.Width;
             this.Height = env.Height;
             this.Environment = env;
-            this._drawable = (Bitmap)Image.FromFile(@"Assets\cloudbg.jpg");
-            this._drawable = new Bitmap(this._drawable, new Size(500, 280));
+            this.drawable = (Bitmap)Image.FromFile(@"Assets\cloudbg.jpg");
+            this.drawable = new Bitmap(this.drawable, new Size(500, 280));
         }
 
         /// <summary>
         /// Draws the cloud into the environment based on the relative position.
         /// </summary>
         /// <param name="g">System Graphics <see cref="Graphics"/></param>
-        public override void Draw(System.Drawing.Graphics g)
+        public override void Draw(Graphics g)
         {
             var pos = Environment.CalculateRelativePosition(this);
 
-            for (var curw = pos.X; curw < this.Width; curw += this._drawable.Width)
+            for (var curw = pos.X; curw < this.Width; curw += this.drawable.Width)
             {
-                for (var curh = pos.Y; curh < this.Height; curh += this._drawable.Height)
+                for (var curh = pos.Y; curh < this.Height; curh += this.drawable.Height)
                 {
-                    g.DrawImage(this._drawable, (int)curw, (int)curh);
+                    g.DrawImage(this.drawable, (int)curw, (int)curh);
                 }
             }
         }

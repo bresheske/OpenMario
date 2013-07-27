@@ -23,37 +23,37 @@ namespace OpenMario.Core.Physics
         /// <summary>
         /// Declares the Ground Friction Delta field.
         /// </summary>
-        public const double GROUND_FRICTION_DELTA = 1.4d;
+        public const double GroundFrictionDelta = 1.4d;
 
         /// <summary>
         /// Declares the Air Friction Delta field.
         /// </summary>
-        public const double AIR_FRICTION_DELTA = .9d;
+        public const double AirFrictionDelta = .9d;
 
         /// <summary>
         /// Declares the Max Movement Speed of any Actor.
         /// </summary>
-        public const double MAX_MOVEMENT_SPEED = 10d;
+        public const double MaxMovementSpeed = 10d;
 
         /// <summary>
         /// Declares the Max Jump Speed of any Actor.
         /// </summary>
-        public const double MAX_JUMP_SPEED = 12d;
+        public const double MaxJumpSpeed = 12d;
 
         /// <summary>
         /// Declares the movement delta for any actor.
         /// </summary>
-        public const double MOVEMENT_DELTA = .3d;
+        public const double MovementDelta = .3d;
 
         /// <summary>
         /// Declares the gravity
         /// </summary>
-        public static readonly Vector2D_Dbl GRAVITY = new Vector2D_Dbl(0d, -.6d);
+        public static readonly Vector2D_Dbl Gravity = new Vector2D_Dbl(0d, -.6d);
 
         /// <summary>
         /// Declares the maximum gravity
         /// </summary>
-        public static readonly Vector2D_Dbl MAX_GRAVITY = new Vector2D_Dbl(0d, -MAX_MOVEMENT_SPEED);
+        public static readonly Vector2D_Dbl MaxGravity = new Vector2D_Dbl(0d, -MaxMovementSpeed);
 
         /// <summary>
         /// Enumerates the different <c>CollisionType</c>
@@ -63,27 +63,27 @@ namespace OpenMario.Core.Physics
             /// <summary>
             /// The actor is colliding from the top.
             /// </summary>
-            TOP,
+            Top,
 
             /// <summary>
             /// The actor is colliding from the left
             /// </summary>
-            LEFT,
+            Left,
 
             /// <summary>
             /// The actor is colliding from the right
             /// </summary>
-            RIGHT,
+            Right,
 
             /// <summary>
             /// The actor is colliding from the bottom.
             /// </summary>
-            BOTTOM,
+            Bottom,
 
             /// <summary>
             /// The actor is not colliding.
             /// </summary>
-            NONE
+            None
         }
 
         /// <summary>
@@ -123,85 +123,198 @@ namespace OpenMario.Core.Physics
         {
             if (IsActorStandingOnAnother(a, b))
             {
-                return CollisionType.TOP;
+                return CollisionType.Top;
             }
-            else if (IsActorPushingAnotherFromLeft(a, b))
+
+            if (IsActorPushingAnotherFromLeft(a, b))
             {
-                return CollisionType.LEFT;
+                return CollisionType.Left;
             }
-            else if (IsActorPushingAnotherFromRight(a, b))
+
+            if (IsActorPushingAnotherFromRight(a, b))
             {
-                return CollisionType.RIGHT;
+                return CollisionType.Right;
             }
-            else if (IsActorPushingAnotherFromBottom(a, b))
+
+            if (IsActorPushingAnotherFromBottom(a, b))
             {
-                return CollisionType.BOTTOM;
+                return CollisionType.Bottom;
             }
-            else
-            {
-                return CollisionType.NONE;
-            }
+
+            return CollisionType.None;
         }
 
+        /// <summary>
+        /// The is within max threshold.
+        /// </summary>
+        /// <param name="value">
+        /// The value.
+        /// </param>
+        /// <param name="other">
+        /// The other.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsWithinMaxThreshold(double value, double other)
         {
-            return Math.Abs(value - other) <= MAX_MOVEMENT_SPEED;
+            return Math.Abs(value - other) <= MaxMovementSpeed;
         }
 
+        /// <summary>
+        /// The is actor standing on another.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> standing
+        /// </param>
+        /// <param name="loaded">
+        /// The <see cref="BaseActor"/> that is being stood on.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorStandingOnAnother(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorStandingOnAnother(a, b));
         }
 
+        /// <summary>
+        /// The is actor pushing another from left.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> pushing.
+        /// </param>
+        /// <param name="loaded">
+        /// The <see cref="BaseActor"/> being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromLeft(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorPushingAnotherFromLeft(a, b));
         }
 
+        /// <summary>
+        /// The is actor pushing another from the right.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> pushing from the right.
+        /// </param>
+        /// <param name="loaded">
+        /// The <see cref="BaseActor"/> being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromRight(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorPushingAnotherFromRight(a, b));
         }
 
+        /// <summary>
+        /// The is actor pushing another from bottom.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> that is pushing.
+        /// </param>
+        /// <param name="loaded">
+        /// The <see cref="BaseActor"/> that is being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromBottom(BaseActor a, List<BaseActor> loaded)
         {
             return loaded.Any(b => IsActorPushingAnotherFromBottom(a, b));
         }
 
+        /// <summary>
+        /// The is actor standing on another.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> that is standing.
+        /// </param>
+        /// <param name="b">
+        /// The <see cref="BaseActor"/> that is being stood on.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorStandingOnAnother(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)
                    && IsWithinMaxThreshold(a.Position.Y + a.Height, b.Position.Y);
         }
 
+        /// <summary>
+        /// The is actor pushing another from left.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> that is pushing.
+        /// </param>
+        /// <param name="b">
+        /// The <see cref="BaseActor"/> that is being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromLeft(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)
                    && IsWithinMaxThreshold(a.Position.X + a.Width, b.Position.X);
         }
 
+        /// <summary>
+        /// The is actor pushing another from right.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> that is pushing.
+        /// </param>
+        /// <param name="b">
+        /// The <see cref="BaseActor"/> that is being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromRight(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)
                    && IsWithinMaxThreshold(a.Position.X, b.Position.X + b.Width);
         }
 
+        /// <summary>
+        /// The is actor pushing another from bottom.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> that is pushing.
+        /// </param>
+        /// <param name="b">
+        /// The <see cref="BaseActor"/> that is being pushed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsActorPushingAnotherFromBottom(BaseActor a, BaseActor b)
         {
             return CollidedWith(a, b)
                 && IsWithinMaxThreshold(a.Position.Y, b.Position.Y + b.Height);
         }
 
+        /// <summary>
+        /// The block all collisions.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> colliding with an object.
+        /// </param>
+        /// <param name="loadedactors">
+        /// The <see cref="BaseActor"/> that is being collided with.
+        /// </param>
         public static void BlockAllCollisions(BaseActor a, List<BaseActor> loadedactors)
         {
             var collisions = GetAllCollisions(loadedactors, a);
-            foreach (var c in collisions)
+            foreach (var c in collisions.Where(c => c.CollisionAction == BaseActor.CollisionType.Block))
             {
-                if (c.CollisionAction != BaseActor.CollisionType.BLOCK)
-                {
-                    continue;
-                }
-
                 if (IsActorStandingOnAnother(a, c))
                 {
                     // Standing
@@ -229,29 +342,44 @@ namespace OpenMario.Core.Physics
             }
         }
 
+        /// <summary>
+        /// The normalize velocity.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> to normalize.
+        /// </param>
         public static void NormalizeVelocity(BaseActor a)
         {
-            if (a.Velocity.X < -MAX_MOVEMENT_SPEED)
+            if (a.Velocity.X < -MaxMovementSpeed)
             {
-                a.Velocity = new Vector2D_Dbl(-MAX_MOVEMENT_SPEED, a.Velocity.Y);
+                a.Velocity = new Vector2D_Dbl(-MaxMovementSpeed, a.Velocity.Y);
             }
 
-            if (a.Velocity.X > MAX_MOVEMENT_SPEED)
+            if (a.Velocity.X > MaxMovementSpeed)
             {
-                a.Velocity = new Vector2D_Dbl(MAX_MOVEMENT_SPEED, a.Velocity.Y);
+                a.Velocity = new Vector2D_Dbl(MaxMovementSpeed, a.Velocity.Y);
             }
 
-            if (a.Velocity.Y < -MAX_MOVEMENT_SPEED)
+            if (a.Velocity.Y < -MaxMovementSpeed)
             {
-                a.Velocity = new Vector2D_Dbl(a.Velocity.X, -MAX_MOVEMENT_SPEED);
+                a.Velocity = new Vector2D_Dbl(a.Velocity.X, -MaxMovementSpeed);
             }
 
-            if (a.Velocity.Y > MAX_MOVEMENT_SPEED)
+            if (a.Velocity.Y > MaxMovementSpeed)
             {
-                a.Velocity = new Vector2D_Dbl(a.Velocity.X, MAX_MOVEMENT_SPEED);
+                a.Velocity = new Vector2D_Dbl(a.Velocity.X, MaxMovementSpeed);
             }
         }
 
+        /// <summary>
+        /// The apply ground friction.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> to apply friction to.
+        /// </param>
+        /// <param name="loadedactors">
+        /// The <see cref="BaseActor"/> to apply friction from (the ground).
+        /// </param>
         public static void ApplyGroundFriction(BaseActor a, List<BaseActor> loadedactors)
         {
             if (!IsActorStandingOnAnother(a, loadedactors))
@@ -260,20 +388,29 @@ namespace OpenMario.Core.Physics
             }
 
             // standing on ground, apply friction.
-            if (Math.Abs(a.Velocity.X - GROUND_FRICTION_DELTA) < GROUND_FRICTION_DELTA)
+            if (Math.Abs(a.Velocity.X - GroundFrictionDelta) < GroundFrictionDelta)
             {
                 a.Velocity = new Vector2D_Dbl(0, a.Velocity.Y);
             }
             else if (a.Velocity.X > 0)
             {
-                a.Velocity += new Vector2D_Dbl(-GROUND_FRICTION_DELTA, 0);
+                a.Velocity += new Vector2D_Dbl(-GroundFrictionDelta, 0);
             }
             else if (a.Velocity.X < 0)
             {
-                a.Velocity += new Vector2D_Dbl(GROUND_FRICTION_DELTA, 0);
+                a.Velocity += new Vector2D_Dbl(GroundFrictionDelta, 0);
             }
         }
 
+        /// <summary>
+        /// The apply air friction.
+        /// </summary>
+        /// <param name="a">
+        /// The <see cref="BaseActor"/> to apply air friction to.
+        /// </param>
+        /// <param name="loadedactors">
+        /// The <see cref="BaseActor"/> to apply friction from.
+        /// </param>
         public static void ApplyAirFriction(BaseActor a, List<BaseActor> loadedactors)
         {
             if (IsActorStandingOnAnother(a, loadedactors))
@@ -282,17 +419,17 @@ namespace OpenMario.Core.Physics
             }
 
             // in air, apply friction.
-            if (Math.Abs(a.Velocity.X - AIR_FRICTION_DELTA) < AIR_FRICTION_DELTA)
+            if (Math.Abs(a.Velocity.X - AirFrictionDelta) < AirFrictionDelta)
             {
                 a.Velocity = new Vector2D_Dbl(0, a.Velocity.Y);
             }
             else if (a.Velocity.X > 0)
             {
-                a.Velocity += new Vector2D_Dbl(-AIR_FRICTION_DELTA, 0);
+                a.Velocity += new Vector2D_Dbl(-AirFrictionDelta, 0);
             }
             else if (a.Velocity.X < 0)
             {
-                a.Velocity += new Vector2D_Dbl(AIR_FRICTION_DELTA, 0);
+                a.Velocity += new Vector2D_Dbl(AirFrictionDelta, 0);
             }
         }
     }

@@ -11,8 +11,14 @@ namespace OpenMario.Core.Engine
     using System;
     using System.Drawing;
 
+    /// <summary>
+    /// The frame event args.
+    /// </summary>
     public class FrameEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets or sets the frame.
+        /// </summary>
         public Bitmap Frame { get; set; }
     }
 }
