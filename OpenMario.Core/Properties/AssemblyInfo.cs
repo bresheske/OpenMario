@@ -1,5 +1,14 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="brpeanut">
+//   Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary>
+//   AssemblyInfo for OpenMario
+// </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 

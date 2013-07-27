@@ -1,4 +1,12 @@
-﻿using System.Reflection;
+﻿//-----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> AssemblyInfo for OpenMario </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

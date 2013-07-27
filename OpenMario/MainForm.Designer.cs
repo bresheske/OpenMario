@@ -1,6 +1,17 @@
-﻿namespace OpenMario
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainForm.Designer.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Main Form Designer for OpenMario </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
+
+namespace OpenMario
 {
-    partial class MainForm
+    /// <summary>
+    /// The main form.
+    /// </summary>
+    public partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -8,15 +19,21 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
+        /// The canvas.
+        /// </summary>
+        private System.Windows.Forms.PictureBox canvas;
+
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -56,10 +73,6 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
-
-        private System.Windows.Forms.PictureBox canvas;
     }
 }
-
