@@ -48,6 +48,11 @@ namespace OpenMario.Core.Actors
             }
 
             this.Position -= this.Velocity;
+            if (this.Position.X < 0)
+                this.Position = new VectorClass.Vector2D_Dbl(0, this.Position.Y);
+            if (this.Position.X >= Environment.Width - this.Width - 5)
+                this.Position = new VectorClass.Vector2D_Dbl(Environment.Width - this.Width - 5, this.Position.Y);
+
         }
 
         /// <summary>
