@@ -33,7 +33,7 @@ namespace OpenMario.Core.Actors.Concrete
         {
             this.Width = 22;
             this.Height = 26;
-            this.Position = new Vector2D_Dbl(100, 200);
+            this.Position = new Vector2D_Dbl(80, 300);
             this.player = player;
             this.EnvironmentEffect = EnvironmentEffectType.ControlsViewportScroll;
             this.IsAlive = true;

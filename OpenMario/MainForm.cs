@@ -27,7 +27,7 @@ namespace OpenMario
         /// <summary>
         /// The _environment.
         /// </summary>
-        private readonly Core.Environment.Environment environment;
+        private Core.Environment.Environment environment;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -57,6 +57,12 @@ namespace OpenMario
             using (var g = Graphics.FromImage(e.Frame))
             {
                 this.environment.Update();
+                if (this.environment.IsRunning == false)
+                {
+                    this.environment = new LevelOne();
+                    this.environment.Load();
+                    this.environment.RegisterAllKeys(this);
+                }
                 this.environment.Render(g);
                 this.DrawDebug(g);
                 g.Flush();

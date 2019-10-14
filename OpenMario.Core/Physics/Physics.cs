@@ -43,7 +43,7 @@ namespace OpenMario.Core.Physics
         /// <summary>
         /// Declares the movement delta for any actor.
         /// </summary>
-        public const double MovementDelta = .3d;
+        public const double MovementDelta = .2d;
 
         /// <summary>
         /// Declares the gravity

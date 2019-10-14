@@ -218,8 +218,8 @@ namespace OpenMario.Core.Environment
                 return;
             }
 
-            this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
-            this.MusicPlayer.controls.play();
+            //this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
+            //this.MusicPlayer.controls.play();
         }
 
         /// <summary>
