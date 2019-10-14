@@ -45,8 +45,12 @@ namespace OpenMario.Core.Actors.Concrete
         public override void Load(Environment.Environment env)
         {
             this.Environment = env;
-            this.drawable = (Bitmap)Image.FromFile(@"Assets\pipe.png");
-            this.drawable = new Bitmap(this.drawable, new Size(Width, Height));
+
+            Bitmap B = new Bitmap(this.Width, this.Height);
+            for (int i = 0; i < B.Height; i++)
+                for (int j = 0; j < B.Width; j++)
+                    B.SetPixel(j, i, Color.White);
+            this.drawable = B;
         }
     }
 }

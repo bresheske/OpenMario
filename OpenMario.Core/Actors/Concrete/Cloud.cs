@@ -45,7 +45,7 @@ namespace OpenMario.Core.Actors.Concrete
             Bitmap B = new Bitmap(row, columns);
             for (int i = 0; i < row; i++)
                 for (int j = 0; j < columns; j++)
-                    B.SetPixel(i, j, Color.White);
+                    B.SetPixel(i, j, Color.CornflowerBlue);
             this.drawable = B;
             //Bitmap B = new Bitmap(row, columns);
             //Graphics G = Graphics.FromImage(B);
