@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Actors\BaseActor.cs" />
     <Compile Include="Actors\Concrete\Cloud.cs" />
+    <Compile Include="Actors\Concrete\Lava.cs" />
     <Compile Include="Actors\Concrete\Goomba.cs" />
     <Compile Include="Actors\Concrete\GreenStaticPipe.cs" />
     <Compile Include="Actors\Concrete\Mario.cs" />
@@ -79,9 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\overworldtheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\questionblock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\smbfull.mp3">
