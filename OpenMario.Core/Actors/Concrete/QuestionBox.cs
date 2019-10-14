@@ -10,6 +10,7 @@ namespace OpenMario.Core.Actors.Concrete
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using VectorClass;
 
     /// <summary>
     /// The question box.
@@ -21,6 +22,8 @@ namespace OpenMario.Core.Actors.Concrete
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         private Bitmap drawable;
+        private bool isActivated = false;
+        private bool previouslyActivated = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QuestionBox"/> class.
@@ -54,6 +57,14 @@ namespace OpenMario.Core.Actors.Concrete
         {
             var pos = Environment.CalculateRelativePosition(this);
             g.DrawImage(this.drawable, (int)pos.X, (int)pos.Y);
+        }
+        public void ActivateBox()
+        {
+            if (!this.previouslyActivated)
+            {
+                this.Environment.isBoxActivated = true;
+                
+            }
         }
     }
 }
