@@ -31,7 +31,7 @@ namespace OpenMario.Core.Actors.Concrete
         /// <param name="loadedactors">List of <c>BaseActor</c></param>
         public override void Update(List<BaseActor> loadedactors)
         {
-            this.Position += this.Velocity;
+
         }
 
         /// <summary>

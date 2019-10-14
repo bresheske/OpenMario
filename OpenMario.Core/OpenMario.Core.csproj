@@ -54,6 +54,7 @@
     <Compile Include="Actors\Concrete\GreenStaticPipe.cs" />
     <Compile Include="Actors\Concrete\Mario.cs" />
     <Compile Include="Actors\Concrete\OrangeLand.cs" />
+    <Compile Include="Actors\Concrete\Coin.cs" />
     <Compile Include="Actors\Concrete\QuestionBox.cs" />
     <Compile Include="Actors\Concrete\StaticBox.cs" />
     <Compile Include="Actors\Concrete\StaticTransparentBox.cs" />
