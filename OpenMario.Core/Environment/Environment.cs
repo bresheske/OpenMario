@@ -24,6 +24,7 @@ namespace OpenMario.Core.Environment
     /// </summary>
     public abstract class Environment : IDisposable
     {
+        public bool isBoxActivated = false;
         /// <summary>
         /// Initializes a new instance of the <see cref="Environment"/> class.
         /// </summary>
@@ -121,6 +122,8 @@ namespace OpenMario.Core.Environment
             }
         }
 
+
+
         /// <summary>
         /// The update method for <see cref="Environment"/>
         /// </summary>
@@ -134,6 +137,15 @@ namespace OpenMario.Core.Environment
             foreach (var a in this.Actors)
             {
                 a.Update(this.Actors);
+            }
+
+            if (this.isBoxActivated)
+            {
+                var coin = new Coin { Position = new Vector2D_Dbl(300, 260) };
+                coin.Load(this);
+                this.Actors.Add(coin);
+
+                this.isBoxActivated = false;
             }
 
             // The following is for updating the viewport.
@@ -218,8 +230,8 @@ namespace OpenMario.Core.Environment
                 return;
             }
 
-            this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
-            this.MusicPlayer.controls.play();
+            //this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
+            //this.MusicPlayer.controls.play();
         }
 
         /// <summary>

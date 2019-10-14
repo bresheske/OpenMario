@@ -13,6 +13,7 @@ namespace OpenMario.Core.Physics
     using System.Drawing;
     using System.Linq;
     using OpenMario.Core.Actors;
+    using OpenMario.Core.Actors.Concrete;
     using VectorClass;
 
     /// <summary>
@@ -23,7 +24,7 @@ namespace OpenMario.Core.Physics
         /// <summary>
         /// Declares the Ground Friction Delta field.
         /// </summary>
-        public const double GroundFrictionDelta = 1.4d;
+        public const double GroundFrictionDelta = 1.8d;
 
         /// <summary>
         /// Declares the Air Friction Delta field.
@@ -43,7 +44,7 @@ namespace OpenMario.Core.Physics
         /// <summary>
         /// Declares the movement delta for any actor.
         /// </summary>
-        public const double MovementDelta = .3d;
+        public const double MovementDelta = .2d;
 
         /// <summary>
         /// Declares the gravity
@@ -313,6 +314,7 @@ namespace OpenMario.Core.Physics
         public static void BlockAllCollisions(BaseActor a, List<BaseActor> loadedactors)
         {
             var collisions = GetAllCollisions(loadedactors, a);
+            bool isCoined = false;
             foreach (var c in collisions.Where(c => c.CollisionAction == BaseActor.CollisionType.Block))
             {
                 if (IsActorStandingOnAnother(a, c))
@@ -338,6 +340,10 @@ namespace OpenMario.Core.Physics
                     // OnBottom
                     a.Position = new Vector2D_Dbl(a.Position.X, c.Position.Y + c.Height);
                     a.Velocity = new Vector2D_Dbl(a.Velocity.X, 0);
+                    if (a.GetType() == typeof(Mario) && c.GetType() == typeof(QuestionBox)){
+                        var box = (QuestionBox) c;
+                        box.ActivateBox();
+                    }
                 }
             }
         }
