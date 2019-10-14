@@ -19,20 +19,6 @@ namespace OpenMario.Core.Actors.Concrete
     public class Goomba : GravityActor
     {
         /// <summary>
-        /// Initializes the _drawable variable to the System.Drawing.Bitmap allowing us to draw on it later in the class.
-        /// This instance is to draw the Goomba moving left.
-        /// </summary>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        private Bitmap drawableLeft;
-
-        /// <summary>
-        /// Initializes the _drawable variable to the System.Drawing.Bitmap allowing us to draw on it later in the class.
-        /// Bitmap for drawing the Goomba moving right.
-        /// </summary>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        private Bitmap drawableRight;
-
-        /// <summary>
         /// /// Initializes the _drawable variable to the System.Drawing.Bitmap allowing us to draw on it later in the class.
         /// Bitmap for drawing the current movement of the Goomba.
         /// </summary>
@@ -78,11 +64,13 @@ namespace OpenMario.Core.Actors.Concrete
         public override void Load(Environment.Environment env)
         {
             this.Environment = env;
-            this.drawableRight = (Bitmap)Image.FromFile(@"Assets\goombar.png");
-            this.drawableRight = new Bitmap(this.drawableRight, new Size(Width, Height));
-            this.drawableLeft = (Bitmap)Image.FromFile(@"Assets\goombal.png");
-            this.drawableLeft = new Bitmap(this.drawableLeft, new Size(Width, Height));
-            this.drawableCurrent = this.drawableRight;
+
+            Bitmap B = new Bitmap(this.Width, this.Height);
+            for (int i = 0; i < B.Height; i++)
+                for (int j = 0; j < B.Width; j++)
+                    B.SetPixel(j, i, Color.Red);
+            this.drawableCurrent = B;
+
             this.timer = new Stopwatch();
             this.timer.Start();
         }
@@ -101,9 +89,6 @@ namespace OpenMario.Core.Actors.Concrete
             // Drawable
             if (this.timer.ElapsedMilliseconds > 500)
             {
-                // Swap drawables.
-                this.drawableCurrent = this.drawableCurrent == this.drawableLeft ? this.drawableRight : this.drawableLeft;
-
                 this.timer.Reset();
                 this.timer.Start();
             }
