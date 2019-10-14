@@ -104,11 +104,25 @@ namespace OpenMario.Core.Actors.Concrete
                 this.WalkingVelocity = new VectorClass.Vector2D_Dbl(this.WalkingVelocity.X * -1, this.WalkingVelocity.Y);
             }
 
-            // If we got stomped on, we'll need to die.
-            if (Physics.Physics.IsActorPushingAnotherFromBottom(this, loadedactors))
+            /* collision options */
+            foreach (BaseActor actor in loadedactors)
             {
-                // Queue the removal. 
-                Environment.ActorsToRemove.Add(this);
+                if (actor is Mario)
+                {
+                    if (Physics.Physics.IsActorStandingOnAnother(actor, this))
+                    {
+                        /* bounce over goomba */
+                        actor.Velocity = new VectorClass.Vector2D_Dbl(actor.Velocity.X, (-2) * actor.Velocity.Y);
+                        /* kill goomba */
+                        Environment.ActorsToRemove.Add(this);
+                    }
+                    else if (Physics.Physics.IsActorPushingAnotherFromLeft(actor, this) ||
+                        Physics.Physics.IsActorPushingAnotherFromRight(actor, this))
+                    {
+                        /* die */
+                        Environment.ActorsToRemove.Add(actor);
+                    }
+                }
             }
 
             // Normalize Velocities to only allow maximum speeds.
