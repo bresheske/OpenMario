@@ -23,7 +23,7 @@ namespace OpenMario.Core.Physics
         /// <summary>
         /// Declares the Ground Friction Delta field.
         /// </summary>
-        public const double GroundFrictionDelta = 1.4d;
+        public const double GroundFrictionDelta = 1.8d;
 
         /// <summary>
         /// Declares the Air Friction Delta field.

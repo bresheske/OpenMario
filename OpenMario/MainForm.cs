@@ -64,7 +64,6 @@ namespace OpenMario
                     this.environment.RegisterAllKeys(this);
                 }
                 this.environment.Render(g);
-                this.DrawDebug(g);
                 g.Flush();
             }
 
@@ -77,50 +76,6 @@ namespace OpenMario
         /// <param name="g">
         /// The <see cref="Graphics"/> for the Draw Debug method..
         /// </param>
-        public void DrawDebug(Graphics g)
-        {
-            g.DrawString(
-                string.Format("FPS: {0}", this.engine.CurrentFPS),
-                new Font("Serif", 12, FontStyle.Bold),
-                Brushes.Aqua,
-                new PointF(5, 5));
-
-            g.FillEllipse(
-                this.environment.Players[0].IsActionPressed(
-                    new Core.Players.Actions.KeyMapping { Action = Core.Players.Actions.KeyMapping.KeyAction.JUMP })
-                    ? Brushes.Aquamarine
-                    : Brushes.Red,
-                new Rectangle(50, 60, 8, 8));
-
-            g.FillRectangle(
-                this.environment.Players[0].IsActionPressed(
-                    new Core.Players.Actions.KeyMapping { Action = Core.Players.Actions.KeyMapping.KeyAction.UP })
-                    ? Brushes.Aquamarine
-                    : Brushes.Red,
-                new Rectangle(50, 80, 8, 15));
-
-            g.FillRectangle(
-                this.environment.Players[0].IsActionPressed(
-                    new Core.Players.Actions.KeyMapping { Action = Core.Players.Actions.KeyMapping.KeyAction.DOWN })
-                    ? Brushes.Aquamarine
-                    : Brushes.Red,
-                new Rectangle(50, 100, 8, 15));
-
-            g.FillRectangle(
-                this.environment.Players[0].IsActionPressed(
-                    new Core.Players.Actions.KeyMapping { Action = Core.Players.Actions.KeyMapping.KeyAction.RIGHT })
-                    ? Brushes.Aquamarine
-                    : Brushes.Red,
-                new Rectangle(61, 93, 15, 8));
-
-            g.FillRectangle(
-                this.environment.Players[0].IsActionPressed(
-                    new Core.Players.Actions.KeyMapping { Action = Core.Players.Actions.KeyMapping.KeyAction.LEFT })
-                    ? Brushes.Aquamarine
-                    : Brushes.Red,
-                new Rectangle(32, 93, 15, 8));
-
-            g.Flush();
-        }
+        
     }
 }
