@@ -1,12 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Environment.cs" company="brpeanut">
-//     Copyright (c), brpeanut. All rights reserved.
-// </copyright>
-// <summary> Where the base environment is created. </summary>
-// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
-//-----------------------------------------------------------------------
-
-namespace OpenMario.Core.Environment
+﻿namespace OpenMario.Core.Environment
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +17,7 @@ namespace OpenMario.Core.Environment
     public abstract class Environment : IDisposable
     {
         public bool isBoxActivated = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Environment"/> class.
         /// </summary>
@@ -109,6 +102,11 @@ namespace OpenMario.Core.Environment
         public bool IsRunning { get; set; }
 
         /// <summary>
+        /// Box activated by player
+        /// </summary>
+        public QuestionBox ActiveBox { get; set; }
+
+        /// <summary>
         /// The register all the keys.
         /// </summary>
         /// <param name="f">
@@ -141,7 +139,7 @@ namespace OpenMario.Core.Environment
 
             if (this.isBoxActivated)
             {
-                var coin = new Coin { Position = new Vector2D_Dbl(300, 260) };
+                var coin = new Coin { Position = new Vector2D_Dbl(ActiveBox.Position.X, ActiveBox.Position.Y - 40) };
                 coin.Load(this);
                 this.Actors.Add(coin);
 

@@ -63,7 +63,7 @@ namespace OpenMario.Core.Actors.Concrete
             if (!this.previouslyActivated)
             {
                 this.Environment.isBoxActivated = true;
-                
+                this.Environment.ActiveBox = this;
             }
         }
     }
