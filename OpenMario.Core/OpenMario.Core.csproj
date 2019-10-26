@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Actors\BaseActor.cs" />
     <Compile Include="Actors\Concrete\Cloud.cs" />
+    <Compile Include="Actors\Concrete\FallingLava.cs" />
     <Compile Include="Actors\Concrete\Lava.cs" />
     <Compile Include="Actors\Concrete\Goomba.cs" />
     <Compile Include="Actors\Concrete\GreenStaticPipe.cs" />
