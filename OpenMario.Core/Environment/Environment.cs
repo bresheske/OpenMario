@@ -25,6 +25,9 @@ namespace OpenMario.Core.Environment
     public abstract class Environment : IDisposable
     {
         public bool isBoxActivated = false;
+        private long framesFromStart = 0;
+        private long lastFrameLavaPoped = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Environment"/> class.
         /// </summary>
@@ -108,6 +111,8 @@ namespace OpenMario.Core.Environment
         /// </summary>
         public bool IsRunning { get; set; }
 
+        public FallingLava FallingLava;
+
         /// <summary>
         /// The register all the keys.
         /// </summary>
@@ -146,6 +151,19 @@ namespace OpenMario.Core.Environment
                 this.Actors.Add(coin);
 
                 this.isBoxActivated = false;
+            }
+
+            if (framesFromStart - lastFrameLavaPoped == 120)
+            {
+                this.ActorsToRemove.Add(this.FallingLava);
+                this.FallingLava = new FallingLava { Position = new Vector2D_Dbl(200, -10), Width = 20, Height = 20 };
+                this.FallingLava.Load(this);
+                this.Actors.Add(FallingLava);
+                lastFrameLavaPoped = framesFromStart;
+            }
+            else
+            {
+                framesFromStart++;
             }
 
             // The following is for updating the viewport.
@@ -230,8 +248,8 @@ namespace OpenMario.Core.Environment
                 return;
             }
 
-            //this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
-            //this.MusicPlayer.controls.play();
+            this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
+            this.MusicPlayer.controls.play();
         }
 
         /// <summary>
