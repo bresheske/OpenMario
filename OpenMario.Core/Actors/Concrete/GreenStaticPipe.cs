@@ -1,11 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="GreenStaticPipe.cs" company="brpeanut">
-//     Copyright (c), brpeanut. All rights reserved.
-// </copyright>
-// <summary> Contains all of the logic for drawing and interacting with the Green Pipe. </summary>
-// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
-//-----------------------------------------------------------------------
-
+﻿
 namespace OpenMario.Core.Actors.Concrete
 {
     using System.Drawing;
@@ -23,10 +16,10 @@ namespace OpenMario.Core.Actors.Concrete
         /// <summary>
         /// Initializes a new instance of the <see cref="GreenStaticPipe"/> class.
         /// </summary>
-        public GreenStaticPipe() 
+        public GreenStaticPipe(int Width = 40, int Height = 60) 
         {
-            this.Width = 40;
-            this.Height = 60;
+            this.Width = Width;
+            this.Height = Height;
         }
 
         /// <summary>
@@ -50,6 +43,14 @@ namespace OpenMario.Core.Actors.Concrete
             for (int i = 0; i < B.Height; i++)
                 for (int j = 0; j < B.Width; j++)
                     B.SetPixel(j, i, Color.White);
+
+            for (int i = 10; i < 20; i++)
+            {
+                for (int y = 20; y < 40; y++)
+                {
+                    B.SetPixel(y, i, Color.Violet);
+                }
+            }
             this.drawable = B;
         }
     }

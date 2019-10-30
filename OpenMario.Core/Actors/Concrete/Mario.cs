@@ -91,11 +91,7 @@ namespace OpenMario.Core.Actors.Concrete
             Physics.Physics.NormalizeVelocity(this);
 
             // Block all Collisions with 'Block' set.
-            Physics.Physics.BlockAllCollisions(this, loadedactors);
-
-            if (this.Position.Y > 400 - this.Height)
-                this.Position = new VectorClass.Vector2D_Dbl(this.Position.X, 400 - this.Height);
-
+            //Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
 
         /// <summary>

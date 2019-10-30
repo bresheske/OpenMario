@@ -1,4 +1,12 @@
-﻿namespace OpenMario.Core.Environment
+﻿//-----------------------------------------------------------------------
+// <copyright file="Environment.cs" company="brpeanut">
+//     Copyright (c), brpeanut. All rights reserved.
+// </copyright>
+// <summary> Where the base environment is created. </summary>
+// <author> brpeanut/OpenMario - https://github.com/brpeanut/OpenMario </author>
+//-----------------------------------------------------------------------
+
+namespace OpenMario.Core.Environment
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +25,8 @@
     public abstract class Environment : IDisposable
     {
         public bool isBoxActivated = false;
+        private long framesFromStart = 0;
+        private long lastFrameLavaPoped = 0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Environment"/> class.
@@ -101,10 +111,7 @@
         /// </summary>
         public bool IsRunning { get; set; }
 
-        /// <summary>
-        /// Box activated by player
-        /// </summary>
-        public QuestionBox ActiveBox { get; set; }
+        public FallingLava FallingLava;
 
         /// <summary>
         /// The register all the keys.
@@ -144,6 +151,19 @@
                 this.Actors.Add(coin);
 
                 this.isBoxActivated = false;
+            }
+
+            if (framesFromStart - lastFrameLavaPoped == 120)
+            {
+                this.ActorsToRemove.Add(this.FallingLava);
+                this.FallingLava = new FallingLava { Position = new Vector2D_Dbl(200, -10), Width = 20, Height = 20 };
+                this.FallingLava.Load(this);
+                this.Actors.Add(FallingLava);
+                lastFrameLavaPoped = framesFromStart;
+            }
+            else
+            {
+                framesFromStart++;
             }
 
             // The following is for updating the viewport.
@@ -228,8 +248,8 @@
                 return;
             }
 
-            //this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
-            //this.MusicPlayer.controls.play();
+            this.MusicPlayer = new WindowsMediaPlayer { URL = this.MusicAsset };
+            this.MusicPlayer.controls.play();
         }
 
         /// <summary>
