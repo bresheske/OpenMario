@@ -32,11 +32,17 @@ namespace OpenMario.Environments.OnePlayerEnvironments
             Actors.Add(new Cloud());
 
             // Actors
-            Actors.Add(new OrangeLand { Position = new Vector2D_Dbl(0, 400), Width = 1500, Height = 10 });
+            Actors.Add(new OrangeLand { Position = new Vector2D_Dbl(0, 400), Width = 1500, Height = 50 });
             Actors.Add(new QuestionBox { Position = new Vector2D_Dbl(300, 300) });
-            Actors.Add(new Goomba { Position = new Vector2D_Dbl(400, 100), WalkingVelocity = new Vector2D_Dbl(1, 0) });
+            Actors.Add(new Goomba { Position = new Vector2D_Dbl(420, 100), WalkingVelocity = new Vector2D_Dbl(1, 0) });
+            Actors.Add(new Coin { Position = new Vector2D_Dbl(450, 250) });
             Actors.Add(new GreenStaticPipe { Position = new Vector2D_Dbl(380, 340) });
+            Actors.Add(new Coin { Position = new Vector2D_Dbl(380, 300) });
             Actors.Add(new GreenStaticPipe { Position = new Vector2D_Dbl(520, 340) });
+            Actors.Add(new Coin { Position = new Vector2D_Dbl(520, 300) });
+            Actors.Add(new GreenStaticPipe { Position = new Vector2D_Dbl(660, 340) });
+            Actors.Add(new Lava { Position = new Vector2D_Dbl(560, 380), Width = 100, Height = 20 });
+            Actors.Add(new Coin { Position = new Vector2D_Dbl(660, 300) });
 
             // Players
             Actors.Add(new Mario(Players[0]));

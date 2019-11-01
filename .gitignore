@@ -27,3 +27,4 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 packages*/
+/.vs/OpenMario/v15/Server/sqlite3

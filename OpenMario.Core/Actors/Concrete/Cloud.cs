@@ -10,6 +10,7 @@ namespace OpenMario.Core.Actors.Concrete
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Drawing.Imaging;
 
     /// <summary>
     /// Code for the Actor 'Cloud.' 
@@ -39,8 +40,17 @@ namespace OpenMario.Core.Actors.Concrete
             this.Width = env.Width;
             this.Height = env.Height;
             this.Environment = env;
-            this.drawable = (Bitmap)Image.FromFile(@"Assets\cloudbg.jpg");
-            this.drawable = new Bitmap(this.drawable, new Size(500, 280));
+            var row = 500;
+            var columns = 280;
+            Bitmap B = new Bitmap(row, columns);
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < columns; j++)
+                    B.SetPixel(i, j, Color.CornflowerBlue);
+            this.drawable = B;
+            //Bitmap B = new Bitmap(row, columns);
+            //Graphics G = Graphics.FromImage(B);
+            //G.FillRectangle(Brushes.Blue, 0, 0, row, columns);
+            //this.drawable = new Bitmap(row, columns, G);
         }
 
         /// <summary>

@@ -33,7 +33,7 @@ namespace OpenMario.Core.Actors.Concrete
         {
             this.Width = 22;
             this.Height = 26;
-            this.Position = new Vector2D_Dbl(100, 200);
+            this.Position = new Vector2D_Dbl(80, 300);
             this.player = player;
             this.EnvironmentEffect = EnvironmentEffectType.ControlsViewportScroll;
             this.IsAlive = true;
@@ -78,21 +78,20 @@ namespace OpenMario.Core.Actors.Concrete
             {
                 Physics.Physics.ApplyGroundFriction(this, loadedactors);
             }
-            
+
             // Check if we need to die.
             if (Position.Y > Environment.Height)
             {
                 this.IsAlive = false;
             }
 
+
+
             // Normalize Velocities to only allow maximum speeds.
             Physics.Physics.NormalizeVelocity(this);
 
             // Block all Collisions with 'Block' set.
-            Physics.Physics.BlockAllCollisions(this, loadedactors);
-
-            // Update Sprite Manager
-            SpriteManager.Update(loadedactors);
+            //Physics.Physics.BlockAllCollisions(this, loadedactors);
         }
 
         /// <summary>

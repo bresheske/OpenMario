@@ -10,6 +10,7 @@ namespace OpenMario.Core.Actors.Concrete
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using VectorClass;
 
     /// <summary>
     /// The question box.
@@ -21,6 +22,8 @@ namespace OpenMario.Core.Actors.Concrete
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         private Bitmap drawable;
+        private bool isActivated = false;
+        private bool previouslyActivated = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QuestionBox"/> class.
@@ -38,8 +41,12 @@ namespace OpenMario.Core.Actors.Concrete
         public override void Load(Environment.Environment env)
         {
             this.Environment = env;
-            this.drawable = (Bitmap)Image.FromFile("Assets/questionblock.png");
-            this.drawable = new Bitmap(this.drawable, new Size(Width, Height));
+
+            Bitmap B = new Bitmap(this.Width, this.Height);
+            for (int i = 0; i < B.Height; i++)
+                for (int j = 0; j < B.Width; j++)
+                    B.SetPixel(j, i, Color.Orange);
+            this.drawable = B;
         }
 
         /// <summary>
@@ -50,6 +57,14 @@ namespace OpenMario.Core.Actors.Concrete
         {
             var pos = Environment.CalculateRelativePosition(this);
             g.DrawImage(this.drawable, (int)pos.X, (int)pos.Y);
+        }
+        public void ActivateBox()
+        {
+            if (!this.previouslyActivated)
+            {
+                this.Environment.isBoxActivated = true;
+                this.Environment.ActiveBox = this;
+            }
         }
     }
 }
